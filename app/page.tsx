@@ -1,65 +1,307 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+
+import { ArrowRight, Bot, Sparkles } from "lucide-react";
+
+import { getSiteIcon } from "@/components/icons/site-icon";
+import { CTASection } from "@/components/ui/cta-section";
+import { Button } from "@/components/ui/button";
+import { Container } from "@/components/ui/container";
+import { Reveal } from "@/components/ui/reveal";
+import { SectionHeader } from "@/components/ui/section-header";
+import { ServiceCard } from "@/components/ui/service-card";
+import { HeroVisual } from "@/components/visuals/hero-visual";
+import { homeProcess, homeWhyPatricians, services } from "@/data/site";
+
+export const metadata: Metadata = {
+  title: "Home",
+};
+
+const featurePills = [
+  "AI Chatbots",
+  "Websites in 3 Days",
+  "AI Marketing",
+  "Mobile Apps",
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+    <>
+      <section className="relative overflow-hidden pt-32">
+        <div className="absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_top_left,rgba(95,160,255,0.22),transparent_32%),radial-gradient(circle_at_top_right,rgba(17,94,212,0.1),transparent_28%)]" />
+        <Container className="relative pb-20 pt-6 sm:pb-24">
+          <div className="grid items-center gap-14 lg:grid-cols-[1.02fr_0.98fr]">
+            <Reveal className="space-y-8">
+              <span className="inline-flex w-fit items-center rounded-full border border-[var(--border)] bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-700)] shadow-sm">
+                AI-First Company
+              </span>
+
+              <div className="space-y-6">
+                <h1 className="max-w-4xl text-balance text-4xl font-semibold tracking-[-0.07em] text-[var(--foreground)] sm:text-5xl lg:text-[4.3rem] lg:leading-[1.02]">
+                  We Build AI Systems, High-End Websites, and Growth Engines for
+                  Modern Businesses
+                </h1>
+                <p className="max-w-2xl text-base leading-8 text-[var(--muted-foreground)] sm:text-lg">
+                  Patricians helps brands scale with intelligent customer
+                  experiences, high-performance websites, AI-enhanced digital
+                  marketing, and modern mobile product development.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button href="/contact">Get Started</Button>
+                <Button href="/services" variant="secondary">
+                  View Services
+                </Button>
+              </div>
+
+              <ul className="flex flex-wrap gap-3">
+                {featurePills.map((pill) => (
+                  <li
+                    key={pill}
+                    className="rounded-full border border-[var(--border)] bg-white/85 px-4 py-2 text-sm font-medium text-[var(--muted-foreground)] shadow-sm"
+                  >
+                    {pill}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <HeroVisual />
+            </Reveal>
+          </div>
+        </Container>
+      </section>
+
+      <section className="py-20 sm:py-24">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-[0.94fr_1.06fr]">
+            <Reveal>
+              <SectionHeader
+                eyebrow="Positioning"
+                title="Patricians is evolving into a premium AI systems company"
+                description="We deliver premium websites, AI-powered marketing, website chatbots, and modern mobile products through a more intelligent, systems-led approach. The goal is sharper execution, clearer digital experiences, and better growth infrastructure."
+              />
+            </Reveal>
+
+            <Reveal delay={0.08}>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <article className="rounded-[1.7rem] border border-[var(--border)] bg-white p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.22)]">
+                  <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--brand-50)] text-[var(--brand-700)]">
+                    <Bot className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-xl font-semibold tracking-[-0.03em] text-[var(--foreground)]">
+                    AI-powered customer experiences
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-[var(--muted-foreground)]">
+                    Website chatbots, guided conversations, and intelligent
+                    touchpoints that help visitors move with more confidence.
+                  </p>
+                </article>
+
+                <article className="rounded-[1.7rem] border border-[var(--border)] bg-[var(--surface-alt)] p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.18)]">
+                  <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-[var(--brand-700)]">
+                    <Bot className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-xl font-semibold tracking-[-0.03em] text-[var(--foreground)]">
+                    Smarter growth systems
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-[var(--muted-foreground)]">
+                    AI-enhanced marketing, sharper iteration, and digital
+                    delivery that feels current, credible, and useful.
+                  </p>
+                </article>
+
+                <article className="rounded-[1.7rem] border border-[var(--border)] bg-[linear-gradient(180deg,#ffffff_0%,#eef5ff_100%)] p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.18)] sm:col-span-2">
+                  <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--brand-50)] text-[var(--brand-700)]">
+                    <Sparkles className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-xl font-semibold tracking-[-0.03em] text-[var(--foreground)]">
+                    Premium execution across product, marketing, and web
+                  </h3>
+                  <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--muted-foreground)]">
+                    The end result should never feel like an agency template or a
+                    rushed AI build. It should feel calm, premium, intelligent,
+                    and aligned with modern business expectations.
+                  </p>
+                </article>
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-y border-[var(--border)] bg-[var(--surface-alt)] py-20 sm:py-24">
+        <Container>
+          <Reveal>
+            <SectionHeader
+              eyebrow="Services"
+              title="What Patricians delivers"
+              description="A focused set of services designed around modern businesses that need better systems, sharper interfaces, and faster execution."
+              action={
+                <Button href="/services" variant="ghost" className="px-0">
+                  View all services
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              }
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+          </Reveal>
+
+          <div className="mt-12 grid gap-5 lg:grid-cols-2">
+            {services.map((service, index) => (
+              <Reveal key={service.slug} delay={index * 0.04}>
+                <ServiceCard
+                  title={service.title}
+                  description={service.shortDescription}
+                  href={`/services/${service.slug}`}
+                  icon={service.icon}
+                  focus={service.focus}
+                />
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="py-20 sm:py-24">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[1.02fr_0.98fr]">
+            <Reveal>
+              <div className="space-y-6">
+                <SectionHeader
+                  eyebrow="How It Connects"
+                  title="The four service lines are designed to strengthen each other"
+                  description="Patricians is structured so each offering can work independently or fit into a more connected digital growth system. A premium website can pair with a chatbot. Marketing can support the launch. Mobile can extend the product experience."
+                />
+                <div className="rounded-[1.8rem] border border-[var(--border)] bg-[linear-gradient(180deg,#0f2d72_0%,#115ed4_48%,#6aa7ff_100%)] p-6 text-white shadow-[0_26px_90px_-46px_rgba(8,45,134,0.7)]">
+                  <div className="flex items-center gap-3 text-sm font-medium text-white/80">
+                    <Sparkles className="h-4 w-4" />
+                    Premium work, connected clearly
+                  </div>
+                  <p className="mt-4 text-base leading-8 text-white/82">
+                    The aim is not to stack services for the sake of it. The aim
+                    is to give businesses cleaner digital execution across their
+                    website, customer experience, marketing, and product layer.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <div className="grid gap-4">
+                {[
+                  {
+                    title: "Website Foundation",
+                    text: "A premium site creates the trust layer and conversion foundation for everything else.",
+                    icon: "screen",
+                  },
+                  {
+                    title: "Chatbot Layer",
+                    text: "AI chatbots improve engagement, answer questions, and support lead capture on-site.",
+                    icon: "message",
+                  },
+                  {
+                    title: "Growth and Product Momentum",
+                    text: "Marketing and mobile product work help the business extend visibility, engagement, and usable reach.",
+                    icon: "rocket",
+                  },
+                ].map((item) => {
+                  const Icon = getSiteIcon(item.icon);
+
+                  return (
+                    <article
+                      key={item.title}
+                      className="rounded-[1.6rem] border border-[var(--border)] bg-white p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.22)]"
+                    >
+                      <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--brand-50)] text-[var(--brand-700)]">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <h3 className="text-lg font-semibold tracking-[-0.03em] text-[var(--foreground)]">
+                        {item.title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-[var(--muted-foreground)]">
+                        {item.text}
+                      </p>
+                    </article>
+                  );
+                })}
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-y border-[var(--border)] bg-[var(--surface-alt)] py-20 sm:py-24">
+        <Container>
+          <Reveal>
+            <SectionHeader
+              eyebrow="Why Patricians"
+              title="A business-facing approach with premium standards"
+              description="We combine strategy, system thinking, and polished execution so the output feels credible in front of customers and useful behind the scenes."
+              align="center"
+            />
+          </Reveal>
+
+          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {homeWhyPatricians.map((item, index) => {
+              const Icon = getSiteIcon(item.icon);
+
+              return (
+                <Reveal key={item.title} delay={index * 0.04}>
+                  <article className="h-full rounded-[1.6rem] border border-[var(--border)] bg-white p-6 shadow-[0_18px_60px_-42px_rgba(15,23,42,0.18)]">
+                    <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--brand-50)] text-[var(--brand-700)]">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-lg font-semibold tracking-[-0.03em] text-[var(--foreground)]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-[var(--muted-foreground)]">
+                      {item.description}
+                    </p>
+                  </article>
+                </Reveal>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
+
+      <section className="py-20 sm:py-24">
+        <Container>
+          <Reveal>
+            <SectionHeader
+              eyebrow="Process"
+              title="How we move from idea to system"
+              description="Our process is designed to create clarity first, then execute with speed and discipline."
+            />
+          </Reveal>
+
+          <div className="mt-12 grid gap-5 lg:grid-cols-4">
+            {homeProcess.map((item, index) => (
+              <Reveal key={item.step} delay={index * 0.05}>
+                <article className="h-full rounded-[1.6rem] border border-[var(--border)] bg-white p-6 shadow-[0_18px_60px_-42px_rgba(15,23,42,0.18)]">
+                  <span className="inline-flex items-center rounded-full border border-[var(--brand-100)] bg-[var(--brand-50)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--brand-700)]">
+                    {item.step}
+                  </span>
+                  <h3 className="mt-5 text-lg font-semibold tracking-[-0.03em] text-[var(--foreground)]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-[var(--muted-foreground)]">
+                    {item.description}
+                  </p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <CTASection
+        title="Build a sharper digital operating layer for your business"
+        description="Whether you need a premium website, a chatbot, a smarter marketing system, or a mobile MVP, Patricians helps you move with more intelligence and better execution."
+        secondaryLabel="Explore Services"
+        secondaryHref="/services"
+      />
+    </>
   );
 }
