@@ -9,6 +9,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { Logo } from "@/components/brand/logo";
+import { getSiteIcon } from "@/components/icons/site-icon";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { navLinks, services } from "@/data/site";
@@ -83,26 +84,39 @@ export function Navbar() {
                 onMouseEnter={() => setDesktopServicesOpen(true)}
                 onMouseLeave={() => setDesktopServicesOpen(false)}
               >
-                <button
-                  type="button"
-                  onClick={() => setDesktopServicesOpen((open) => !open)}
+                <div
                   className={cn(
-                    "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200",
+                    "inline-flex items-center rounded-full py-2 pl-4 pr-2 text-sm font-medium transition-colors duration-200",
                     pathname.startsWith("/services")
                       ? "bg-[var(--surface-alt)] text-[var(--brand-700)]"
                       : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]",
                   )}
-                  aria-expanded={desktopServicesOpen}
-                  aria-controls="desktop-services-menu"
                 >
-                  Services
-                  <ChevronDown
-                    className={cn(
-                      "h-4 w-4 transition-transform duration-200",
-                      desktopServicesOpen && "rotate-180",
-                    )}
-                  />
-                </button>
+                  <Link
+                    href="/services"
+                    onClick={closeMenus}
+                    className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-300)] focus-visible:ring-offset-2"
+                  >
+                    Services
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => setDesktopServicesOpen((open) => !open)}
+                    className="ml-2 inline-flex h-6 w-6 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-300)] focus-visible:ring-offset-2"
+                    aria-expanded={desktopServicesOpen}
+                    aria-controls="desktop-services-menu"
+                    aria-label={
+                      desktopServicesOpen ? "Close services menu" : "Open services menu"
+                    }
+                  >
+                    <ChevronDown
+                      className={cn(
+                        "h-4 w-4 transition-transform duration-200",
+                        desktopServicesOpen && "rotate-180",
+                      )}
+                    />
+                  </button>
+                </div>
 
                 <AnimatePresence>
                   {desktopServicesOpen ? (
@@ -115,21 +129,34 @@ export function Navbar() {
                       className="absolute left-0 top-[calc(100%+0.8rem)] w-[21rem] rounded-[1.5rem] border border-[var(--border)] bg-white p-3 shadow-[0_24px_80px_-42px_rgba(15,23,42,0.35)]"
                     >
                       <div className="space-y-1">
-                        {services.map((service) => (
-                          <Link
-                            key={service.slug}
-                            href={`/services/${service.slug}`}
-                            onClick={closeMenus}
-                            className="block rounded-[1.2rem] px-4 py-3 transition-colors duration-200 hover:bg-[var(--surface-alt)]"
-                          >
-                            <span className="block text-sm font-semibold text-[var(--foreground)]">
-                              {service.label}
-                            </span>
-                            <span className="mt-1 block text-sm leading-6 text-[var(--muted-foreground)]">
-                              {service.shortDescription}
-                            </span>
-                          </Link>
-                        ))}
+                        {services.map((service) => {
+                          const Icon = getSiteIcon(service.icon);
+
+                          return (
+                            <Link
+                              key={service.slug}
+                              href={`/services/${service.slug}`}
+                              onClick={closeMenus}
+                              className={cn(
+                                "flex items-start gap-4 rounded-[1.2rem] px-4 py-3 transition-colors duration-200 hover:bg-[var(--surface-alt)]",
+                                isActive(pathname, `/services/${service.slug}`) &&
+                                  "bg-[var(--surface-alt)]",
+                              )}
+                            >
+                              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[var(--brand-50)] text-[var(--brand-700)]">
+                                <Icon className="h-4.5 w-4.5" />
+                              </span>
+                              <span className="block">
+                                <span className="block text-sm font-semibold text-[var(--foreground)]">
+                                  {service.label}
+                                </span>
+                                <span className="mt-1 block text-sm leading-6 text-[var(--muted-foreground)]">
+                                  {service.shortDescription}
+                                </span>
+                              </span>
+                            </Link>
+                          );
+                        })}
                       </div>
                     </motion.div>
                   ) : null}
@@ -195,24 +222,42 @@ export function Navbar() {
                   ))}
 
                   <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-alt)]/70">
-                    <button
-                      type="button"
-                      onClick={() => setMobileServicesOpen((open) => !open)}
+                    <div
                       className="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-medium text-[var(--foreground)]"
-                      aria-expanded={mobileServicesOpen}
                     >
-                      <span>Services</span>
-                      <ChevronDown
+                      <Link
+                        href="/services"
+                        onClick={closeMenus}
                         className={cn(
-                          "h-4 w-4 transition-transform duration-200",
-                          mobileServicesOpen && "rotate-180",
+                          "grow rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-300)] focus-visible:ring-offset-2",
+                          pathname.startsWith("/services") && "text-[var(--brand-700)]",
                         )}
-                      />
-                    </button>
+                      >
+                        Services
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={() => setMobileServicesOpen((open) => !open)}
+                        className="ml-3 inline-flex h-6 w-6 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-300)] focus-visible:ring-offset-2"
+                        aria-expanded={mobileServicesOpen}
+                        aria-controls="mobile-services-menu"
+                        aria-label={
+                          mobileServicesOpen ? "Close services menu" : "Open services menu"
+                        }
+                      >
+                        <ChevronDown
+                          className={cn(
+                            "h-4 w-4 transition-transform duration-200",
+                            mobileServicesOpen && "rotate-180",
+                          )}
+                        />
+                      </button>
+                    </div>
 
                     <AnimatePresence initial={false}>
                       {mobileServicesOpen ? (
                         <motion.div
+                          id="mobile-services-menu"
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
@@ -220,16 +265,27 @@ export function Navbar() {
                           className="overflow-hidden"
                         >
                           <div className="grid gap-1 px-2 pb-2">
-                            {services.map((service) => (
-                              <Link
-                                key={service.slug}
-                                href={`/services/${service.slug}`}
-                                onClick={closeMenus}
-                                className="rounded-xl px-3 py-2.5 text-sm text-[var(--muted-foreground)] transition-colors duration-200 hover:bg-white hover:text-[var(--foreground)]"
-                              >
-                                {service.label}
-                              </Link>
-                            ))}
+                            {services.map((service) => {
+                              const Icon = getSiteIcon(service.icon);
+
+                              return (
+                                <Link
+                                  key={service.slug}
+                                  href={`/services/${service.slug}`}
+                                  onClick={closeMenus}
+                                  className={cn(
+                                    "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-[var(--muted-foreground)] transition-colors duration-200 hover:bg-white hover:text-[var(--foreground)]",
+                                    isActive(pathname, `/services/${service.slug}`) &&
+                                      "bg-white text-[var(--brand-700)]",
+                                  )}
+                                >
+                                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-white text-[var(--brand-700)] shadow-[0_10px_24px_-18px_rgba(17,94,212,0.38)]">
+                                    <Icon className="h-4.5 w-4.5" />
+                                  </span>
+                                  <span>{service.label}</span>
+                                </Link>
+                              );
+                            })}
                           </div>
                         </motion.div>
                       ) : null}

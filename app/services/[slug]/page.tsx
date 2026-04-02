@@ -5,6 +5,9 @@ import { notFound } from "next/navigation";
 import { Check, Sparkles } from "lucide-react";
 
 import { getSiteIcon } from "@/components/icons/site-icon";
+import { ChatbotPlans } from "@/components/site/chatbot-plans";
+import { MarketingPlans } from "@/components/site/marketing-plans";
+import { WebLaunchPackages } from "@/components/site/web-launch-packages";
 import { CTASection } from "@/components/ui/cta-section";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
@@ -60,6 +63,7 @@ export default async function ServicePage({
   }
 
   const accentClass = accentMap[service.slug];
+  const whyPatriciansTitle = service.title.toLowerCase().replace(/\bai\b/g, "AI");
 
   return (
     <>
@@ -100,8 +104,34 @@ export default async function ServicePage({
         </div>
       </PageHero>
 
-      <section className="py-20 sm:py-24">
-        <Container>
+      {service.slug === "websites-in-3-days" ? (
+        <WebLaunchPackages eyebrow="Web Launch Packages" className="border-t-0" />
+      ) : null}
+
+      {service.slug === "ai-chatbots" ? (
+        <ChatbotPlans eyebrow="Website Chatbot Plans" className="border-t-0" />
+      ) : null}
+
+      {service.slug === "ai-digital-marketing" ? <MarketingPlans /> : null}
+
+      <section className="relative overflow-hidden py-20 sm:py-24">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(242,246,252,0.94)_0%,rgba(255,255,255,0.98)_20%,rgba(246,249,255,0.95)_100%)]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-[linear-gradient(180deg,rgba(221,230,242,0.72)_0%,rgba(255,255,255,0)_100%)]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-[22%] top-18 h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(138,184,255,0.16),transparent_72%)] blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute right-[10%] top-24 h-[18rem] w-[18rem] rounded-full bg-[radial-gradient(circle,rgba(95,160,255,0.12),transparent_74%)] blur-3xl"
+        />
+        <Container className="relative">
           <div className="grid gap-12 lg:grid-cols-[0.92fr_1.08fr]">
             <Reveal>
               <SectionHeader
@@ -166,8 +196,24 @@ export default async function ServicePage({
         </Container>
       </section>
 
-      <section className="py-20 sm:py-24">
-        <Container>
+      <section className="relative overflow-hidden py-20 sm:py-24">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(242,246,252,0.94)_0%,rgba(255,255,255,0.98)_20%,rgba(246,249,255,0.95)_100%)]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-[linear-gradient(180deg,rgba(221,230,242,0.72)_0%,rgba(255,255,255,0)_100%)]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-[24%] top-16 h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(138,184,255,0.16),transparent_72%)] blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute right-[12%] top-24 h-[18rem] w-[18rem] rounded-full bg-[radial-gradient(circle,rgba(95,160,255,0.12),transparent_74%)] blur-3xl"
+        />
+        <Container className="relative">
           <Reveal>
             <SectionHeader
               eyebrow="How It Works"
@@ -245,12 +291,28 @@ export default async function ServicePage({
         </Container>
       </section>
 
-      <section className="py-20 sm:py-24">
-        <Container>
+      <section className="relative overflow-hidden py-20 sm:py-24">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(242,246,252,0.94)_0%,rgba(255,255,255,0.98)_20%,rgba(246,249,255,0.95)_100%)]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-[linear-gradient(180deg,rgba(221,230,242,0.72)_0%,rgba(255,255,255,0)_100%)]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-[26%] top-16 h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(138,184,255,0.16),transparent_72%)] blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute right-[14%] top-24 h-[18rem] w-[18rem] rounded-full bg-[radial-gradient(circle,rgba(95,160,255,0.12),transparent_74%)] blur-3xl"
+        />
+        <Container className="relative">
           <Reveal>
             <SectionHeader
               eyebrow="Why Patricians"
-              title={`Why choose Patricians for ${service.title.toLowerCase()}`}
+              title={`Why choose Patricians for ${whyPatriciansTitle}`}
               description="The goal is to combine strategic thinking, strong product judgment, and premium execution so the final outcome feels both modern and dependable."
             />
           </Reveal>

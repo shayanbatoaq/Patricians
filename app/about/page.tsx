@@ -55,8 +55,24 @@ export default function AboutPage() {
         </div>
       </PageHero>
 
-      <section className="py-20 sm:py-24">
-        <Container>
+      <section className="relative overflow-hidden py-20 sm:py-24">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(242,246,252,0.94)_0%,rgba(255,255,255,0.98)_20%,rgba(246,249,255,0.95)_100%)]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-[linear-gradient(180deg,rgba(221,230,242,0.72)_0%,rgba(255,255,255,0)_100%)]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-[24%] top-16 h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(138,184,255,0.16),transparent_72%)] blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute right-[12%] top-20 h-[20rem] w-[20rem] rounded-full bg-[radial-gradient(circle,rgba(95,160,255,0.12),transparent_74%)] blur-3xl"
+        />
+        <Container className="relative">
           <div className="grid gap-12 lg:grid-cols-[0.92fr_1.08fr]">
             <Reveal>
               <SectionHeader

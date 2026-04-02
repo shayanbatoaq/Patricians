@@ -1,8 +1,17 @@
 import Link from "next/link";
 
+import { Mail, Phone } from "lucide-react";
+
 import { Logo } from "@/components/brand/logo";
+import { SocialIcon } from "@/components/icons/social-icon";
 import { Container } from "@/components/ui/container";
-import { companyTagline, navLinks, services } from "@/data/site";
+import {
+  companyTagline,
+  contactDetails,
+  navLinks,
+  services,
+  socialLinks,
+} from "@/data/site";
 
 export function Footer() {
   return (
@@ -58,15 +67,45 @@ export function Footer() {
               Connect
             </h3>
             <ul className="space-y-3 text-sm text-[var(--muted-foreground)]">
-              <li>Strategy calls by appointment</li>
-              <li>Project inquiries through the contact form</li>
-              <li>Social channels coming soon</li>
+              <li>
+                <a
+                  href={contactDetails.email.href}
+                  className="inline-flex items-center gap-3 transition-colors duration-200 hover:text-[var(--brand-700)]"
+                >
+                  <Mail className="h-4 w-4" />
+                  <span>{contactDetails.email.value}</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={contactDetails.phone.href}
+                  className="inline-flex items-center gap-3 transition-colors duration-200 hover:text-[var(--brand-700)]"
+                >
+                  <Phone className="h-4 w-4" />
+                  <span>{contactDetails.phone.value}</span>
+                </a>
+              </li>
+              {socialLinks.map((item) => {
+                return (
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-3 transition-colors duration-200 hover:text-[var(--brand-700)]"
+                    >
+                      <SocialIcon platform={item.label} className="h-4 w-4" />
+                      <span>{item.label}</span>
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-[var(--border)] pt-6 text-sm text-[var(--muted-foreground)] sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 Patricians. All rights reserved.</p>
+          <p>&copy; 2026 Patricians. All rights reserved.</p>
           <p>Built for businesses that want smarter systems and better execution.</p>
         </div>
       </Container>

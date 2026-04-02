@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
-import { ArrowRight, Bot, Sparkles } from "lucide-react";
+import Link from "next/link";
+
+import { ArrowRight, Bot, Sparkles, Waypoints } from "lucide-react";
 
 import { getSiteIcon } from "@/components/icons/site-icon";
 import { CTASection } from "@/components/ui/cta-section";
@@ -17,17 +19,32 @@ export const metadata: Metadata = {
 };
 
 const featurePills = [
-  "AI Chatbots",
-  "Websites in 3 Days",
-  "AI Marketing",
-  "Mobile Apps",
-];
+  {
+    label: "AI Chatbots",
+    href: "/services/ai-chatbots",
+  },
+  {
+    label: "Websites Within Days",
+    href: "/services/websites-in-3-days",
+  },
+  {
+    label: "AI Marketing",
+    href: "/services/ai-digital-marketing",
+  },
+  {
+    label: "Mobile Apps",
+    href: "/services/mobile-app-development",
+  },
+] as const;
 
 export default function Home() {
   return (
     <>
       <section className="relative overflow-hidden pt-32">
-        <div className="absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_top_left,rgba(95,160,255,0.22),transparent_32%),radial-gradient(circle_at_top_right,rgba(17,94,212,0.1),transparent_28%)]" />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(95,160,255,0.22),transparent_32%),radial-gradient(circle_at_top_right,rgba(17,94,212,0.1),transparent_28%),linear-gradient(180deg,rgba(244,248,255,0.82)_0%,rgba(255,255,255,0.34)_58%,rgba(255,255,255,0)_100%)]"
+        />
         <Container className="relative pb-20 pt-6 sm:pb-24">
           <div className="grid items-center gap-14 lg:grid-cols-[1.02fr_0.98fr]">
             <Reveal className="space-y-8">
@@ -54,13 +71,15 @@ export default function Home() {
                 </Button>
               </div>
 
-              <ul className="flex flex-wrap gap-3">
+              <ul className="flex flex-nowrap gap-2.5 overflow-x-auto pb-2 sm:gap-3 sm:pb-0">
                 {featurePills.map((pill) => (
-                  <li
-                    key={pill}
-                    className="rounded-full border border-[var(--border)] bg-white/85 px-4 py-2 text-sm font-medium text-[var(--muted-foreground)] shadow-sm"
-                  >
-                    {pill}
+                  <li key={pill.href} className="flex-shrink-0">
+                    <Link
+                      href={pill.href}
+                      className="group inline-flex items-center rounded-full border border-[var(--border)] bg-white/88 px-3.5 py-2 text-[0.82rem] font-semibold text-[var(--muted-foreground)] shadow-[0_14px_34px_-26px_rgba(15,23,42,0.3)] transition-all duration-300 hover:border-[var(--brand-300)] hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(238,245,255,0.98)_100%)] hover:text-[var(--brand-700)] hover:shadow-[0_18px_46px_-24px_rgba(17,94,212,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-300)] focus-visible:ring-offset-2 sm:px-4 sm:text-sm"
+                    >
+                      <span className="whitespace-nowrap">{pill.label}</span>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -72,9 +91,24 @@ export default function Home() {
           </div>
         </Container>
       </section>
-
-      <section className="py-20 sm:py-24">
-        <Container>
+      <section className="relative overflow-hidden py-20 sm:py-24">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(241,245,251,0.94)_0%,rgba(255,255,255,0.98)_18%,rgba(247,250,255,0.94)_100%)]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-[linear-gradient(180deg,rgba(221,230,242,0.72)_0%,rgba(255,255,255,0)_100%)]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-[32%] top-16 h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(138,184,255,0.18),transparent_72%)] blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute right-[14%] top-20 h-[20rem] w-[20rem] rounded-full bg-[radial-gradient(circle,rgba(95,160,255,0.14),transparent_74%)] blur-3xl"
+        />
+        <Container className="relative">
           <div className="grid gap-12 lg:grid-cols-[0.94fr_1.06fr]">
             <Reveal>
               <SectionHeader
@@ -101,7 +135,7 @@ export default function Home() {
 
                 <article className="rounded-[1.7rem] border border-[var(--border)] bg-[var(--surface-alt)] p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.18)]">
                   <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-[var(--brand-700)]">
-                    <Bot className="h-5 w-5" />
+                    <Waypoints className="h-5 w-5" />
                   </div>
                   <h3 className="text-xl font-semibold tracking-[-0.03em] text-[var(--foreground)]">
                     Smarter growth systems
@@ -163,14 +197,30 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="py-20 sm:py-24">
-        <Container>
+      <section className="relative overflow-hidden py-20 sm:py-24">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(242,246,252,0.94)_0%,rgba(255,255,255,0.98)_20%,rgba(246,249,255,0.95)_100%)]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-[linear-gradient(180deg,rgba(221,230,242,0.72)_0%,rgba(255,255,255,0)_100%)]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-[24%] top-16 h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(138,184,255,0.16),transparent_72%)] blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute right-[12%] top-28 h-[18rem] w-[18rem] rounded-full bg-[radial-gradient(circle,rgba(95,160,255,0.12),transparent_74%)] blur-3xl"
+        />
+        <Container className="relative">
           <div className="grid gap-10 lg:grid-cols-[1.02fr_0.98fr]">
             <Reveal>
               <div className="space-y-6">
                 <SectionHeader
                   eyebrow="How It Connects"
-                  title="The four service lines are designed to strengthen each other"
+                  title="The service lines are designed to strengthen each other"
                   description="Patricians is structured so each offering can work independently or fit into a more connected digital growth system. A premium website can pair with a chatbot. Marketing can support the launch. Mobile can extend the product experience."
                 />
                 <div className="rounded-[1.8rem] border border-[var(--border)] bg-[linear-gradient(180deg,#0f2d72_0%,#115ed4_48%,#6aa7ff_100%)] p-6 text-white shadow-[0_26px_90px_-46px_rgba(8,45,134,0.7)]">

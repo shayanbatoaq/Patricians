@@ -78,10 +78,6 @@ export function ContactForm() {
         </label>
 
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm leading-6 text-[var(--muted-foreground)]">
-            This is a polished front-end inquiry form ready for email, backend,
-            or CRM wiring when you want it.
-          </p>
           <Button type="submit">Let&apos;s Build</Button>
         </div>
 

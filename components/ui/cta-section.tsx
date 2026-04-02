@@ -42,18 +42,15 @@ export function CTASection({
                 </p>
               </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <Button
-                  href={primaryHref}
-                  className="bg-white text-[var(--foreground)] hover:bg-[var(--brand-50)]"
-                >
+              <div className="flex flex-col gap-3 sm:flex-row lg:self-center">
+                <Button href={primaryHref} variant="light" className="min-w-[12.5rem]">
                   {primaryLabel}
                 </Button>
                 {secondaryLabel && secondaryHref ? (
                   <Button
                     href={secondaryHref}
-                    variant="ghost"
-                    className="border border-white/20 bg-white/10 text-white hover:bg-white/16"
+                    variant="lightGhost"
+                    className="min-w-[12.5rem]"
                   >
                     {secondaryLabel}
                     <ArrowRight className="ml-2 h-4 w-4" />

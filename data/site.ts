@@ -8,6 +8,34 @@ export const navLinks = [
   { label: "Contact", href: "/contact" },
 ] as const;
 
+export const contactDetails = {
+  email: {
+    label: "Email",
+    value: "info@patricians.pk",
+    href: "mailto:info@patricians.pk",
+  },
+  phone: {
+    label: "Phone",
+    value: "+92 333 2612654",
+    href: "tel:+923332612654",
+  },
+} as const;
+
+export const socialLinks = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/patricianspak/",
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/profile.php?id=61586050635541",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/patricianspk/?viewAsMember=true",
+  },
+] as const;
+
 export type ServiceSlug =
   | "ai-chatbots"
   | "websites-in-3-days"
@@ -32,6 +60,36 @@ export type Service = {
   heroHighlights: string[];
   ctaTitle: string;
   ctaText: string;
+};
+
+export type MarketingPlan = {
+  name: string;
+  price: string;
+  goal: string;
+  icon: string;
+  accentClassName: string;
+  accentSoftClassName: string;
+  includes: string[];
+};
+
+export type ChatbotPlan = {
+  name: string;
+  price: string;
+  commitment: string;
+  role: string;
+  bestFor: string;
+  icon: string;
+  badge?: string;
+  featured?: boolean;
+  accentClassName: string;
+  accentSoftClassName: string;
+  positioning: string;
+  usage: string;
+  overage: string;
+  support: string;
+  includes: string[];
+  limitations?: string[];
+  ctaLabel: string;
 };
 
 export const services = [
@@ -94,9 +152,9 @@ export const services = [
       },
       {
         step: "04",
-        title: "Monthly improvement",
+        title: "Support and refinement path",
         description:
-          "We refine responses, prompts, and handoff logic based on real visitor behavior.",
+          "We match the support and optimization rhythm to the selected plan, from stable maintenance to ongoing conversion-focused improvement.",
       },
     ],
     deliverables: [
@@ -104,17 +162,17 @@ export const services = [
       "Lead capture and qualification flows",
       "FAQ and support response design",
       "Escalation pathways for high-intent inquiries",
-      "Recurring optimization and support model",
+      "Support and optimization path matched to the selected plan",
     ],
     whyPatricians: [
       "We treat chatbot design as part of the customer experience, not an add-on.",
       "We build for clarity, conversion, and trust instead of novelty.",
-      "We support recurring refinement so performance improves over time.",
+      "We structure each plan so support, automation, and optimization match the business need.",
     ],
     heroHighlights: [
       "24/7 assistance with premium brand presentation",
-      "Lead capture and qualification on-site",
-      "Integrated support model with monthly optimization",
+      "Lead capture, qualification, and conversion support on-site",
+      "No setup fee with a 3-month upfront commitment",
     ],
     ctaTitle: "Turn your website into a smarter front door",
     ctaText:
@@ -123,8 +181,8 @@ export const services = [
   {
     slug: "websites-in-3-days",
     icon: "screen",
-    label: "High-End Websites in 3 Days",
-    title: "High-End Websites in 3 Days",
+    label: "High-End Websites Within Days",
+    title: "High-End Websites Within Days",
     eyebrow: "Fast Premium Delivery",
     shortDescription:
       "High-end websites delivered with speed, modern design direction, strong front-end quality, and clear conversion intent.",
@@ -469,9 +527,179 @@ export const contactFaq = [
 
 export const contactServiceOptions = [
   "AI Chatbots",
-  "Website in 3 Days",
+  "High-End Websites Within Days",
   "AI Digital Marketing",
   "Mobile App Development",
+] as const;
+
+export const digitalMarketingPlans: ReadonlyArray<MarketingPlan> = [
+  {
+    name: "Ignite",
+    price: "$99 / month",
+    goal: "Establish credibility and online presence",
+    icon: "flame",
+    accentClassName: "from-emerald-500 via-emerald-400 to-lime-300",
+    accentSoftClassName:
+      "border-emerald-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(236,253,245,0.96)_100%)]",
+    includes: [
+      "Social media setup and optimization",
+      "8 static posts per month",
+      "2 reels per month",
+      "Basic SEO setup",
+      "Basic analytics setup",
+    ],
+  },
+  {
+    name: "Propel",
+    price: "$149 / month",
+    goal: "Improve engagement and brand consistency",
+    icon: "rocket",
+    accentClassName: "from-sky-600 via-blue-500 to-cyan-300",
+    accentSoftClassName:
+      "border-sky-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(239,246,255,0.96)_100%)]",
+    includes: [
+      "Social platform management",
+      "12-15 posts per month",
+      "4 reels per month",
+      "Basic paid ads strategy support",
+    ],
+  },
+  {
+    name: "Elevate",
+    price: "$199 / month",
+    goal: "Increase visibility and generate qualified leads",
+    icon: "badge",
+    accentClassName: "from-amber-500 via-yellow-400 to-orange-300",
+    accentSoftClassName:
+      "border-amber-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(255,251,235,0.96)_100%)]",
+    includes: [
+      "Brand style guide",
+      "20-25 posts per month",
+      "8 reels per month",
+      "Basic email marketing setup",
+    ],
+  },
+  {
+    name: "Momentum",
+    price: "$249 / month",
+    goal: "Maximize ROI and drive measurable conversions",
+    icon: "trending",
+    accentClassName: "from-orange-600 via-orange-500 to-amber-300",
+    accentSoftClassName:
+      "border-orange-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(255,247,237,0.96)_100%)]",
+    includes: [
+      "Conversion tracking setup",
+      "30 posts per month",
+      "12 reels per month",
+      "Paid campaign creation and optimization",
+    ],
+  },
+  {
+    name: "Dominion",
+    price: "$299 / month",
+    goal: "Scale, dominate, and operate with precision",
+    icon: "target",
+    accentClassName: "from-rose-600 via-red-500 to-orange-300",
+    accentSoftClassName:
+      "border-rose-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(255,241,242,0.96)_100%)]",
+    includes: [
+      "Full paid ads management",
+      "40+ posts per month",
+      "20 reels per month",
+      "Dedicated account manager",
+      "Weekly optimization calls",
+    ],
+  },
+] as const;
+
+export const chatbotPlans: ReadonlyArray<ChatbotPlan> = [
+  {
+    name: "Starter",
+    price: "$100 / month",
+    commitment: "$300 upfront for a 3-month commitment",
+    role: "24/7 AI receptionist",
+    bestFor:
+      "Small and local businesses that need instant replies and a simple way to capture inquiries.",
+    icon: "message",
+    accentClassName: "from-emerald-500 via-emerald-400 to-cyan-300",
+    accentSoftClassName:
+      "border-emerald-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(236,253,245,0.96)_100%)]",
+    positioning:
+      "A 24/7 AI receptionist that answers customers and captures basic leads.",
+    usage: "2,000 messages / month",
+    overage: "$10 per extra 1,000",
+    support: "Standard support, 24-48h response",
+    includes: [
+      "Website chatbot on one site with basic UI customization",
+      "Training on up to 10 website pages and FAQ content",
+      "Lead capture for name and phone or email",
+      "Answers FAQs and common customer questions",
+      "Basic dashboard for conversations and captured leads",
+    ],
+    limitations: [
+      "No lead qualification logic or integrations",
+      "No advanced workflows or optimization layer",
+    ],
+    ctaLabel: "Start with Starter",
+  },
+  {
+    name: "Growth",
+    price: "$200 / month",
+    commitment: "$600 upfront for a 3-month commitment",
+    role: "AI lead generator + assistant",
+    bestFor:
+      "Service businesses, e-commerce brands, and teams that want better leads instead of more loose inquiries.",
+    icon: "users",
+    badge: "Smart Choice",
+    featured: true,
+    accentClassName: "from-[rgba(9,48,111,1)] via-[rgba(29,102,245,1)] to-[rgba(131,184,255,1)]",
+    accentSoftClassName:
+      "border-[rgba(17,94,212,0.18)] bg-[linear-gradient(180deg,rgba(255,255,255,0.99)_0%,rgba(235,244,255,0.98)_100%)]",
+    positioning:
+      "An AI assistant that answers customers, qualifies leads, and captures better-fit opportunities.",
+    usage: "8,000 messages / month",
+    overage: "$8 per extra 1,000",
+    support: "12-24h support with minor monthly tweaks",
+    includes: [
+      "Everything in Starter, plus website and document training",
+      "Lead qualification around service need, budget range, and timeline",
+      "Guided conversation flows instead of random replies",
+      "Basic AI sales assistance with service and product recommendations",
+      "Lead storage to Google Sheets, Notion, or Airtable",
+      "Basic analytics for total chats and leads generated",
+    ],
+    limitations: [
+      "No deep personalization or custom API integrations",
+      "Advanced automation logic is not included",
+    ],
+    ctaLabel: "Choose Growth",
+  },
+  {
+    name: "Pro",
+    price: "$500 / month",
+    commitment: "$1,500 upfront for a 3-month commitment",
+    role: "AI sales system",
+    bestFor:
+      "High-ticket businesses, agencies, and revenue-driven teams that want the chatbot to actively support conversion.",
+    icon: "target",
+    accentClassName: "from-rose-600 via-red-500 to-orange-300",
+    accentSoftClassName:
+      "border-rose-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(255,241,242,0.96)_100%)]",
+    positioning:
+      "A full AI sales rep on your website that captures, qualifies, and converts visitors into customers.",
+    usage: "25,000 messages / month",
+    overage: "$5 per extra 1,000",
+    support: "Priority support under 12h with custom changes",
+    includes: [
+      "Everything in Growth, plus structured sales flows from greeting to conversion",
+      "Deep custom training across website, documents, and internal business context",
+      "Conditional logic and multi-step conversation funnels",
+      "Full CRM integration with HubSpot, Zoho, or custom webhooks",
+      "Advanced analytics for conversion, lead quality, and chat performance",
+      "Ongoing monthly optimization for prompts, flows, and conversion improvements",
+    ],
+    ctaLabel: "Book Pro Strategy",
+  },
 ] as const;
 
 export function getServiceBySlug(slug: string) {
