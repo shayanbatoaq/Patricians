@@ -41,6 +41,19 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!mobileOpen) {
+      document.body.style.overflow = "";
+      return;
+    }
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
   const shellActive = scrolled || mobileOpen || desktopServicesOpen;
   const closeMenus = () => {
     setMobileOpen(false);
@@ -53,10 +66,13 @@ export function Navbar() {
       <Container className="pt-4">
         <div
           className={cn(
-            "rounded-full border px-3 transition-all duration-300",
+            "border px-3 transition-all duration-300",
             shellActive
               ? "border-white/70 bg-white/82 shadow-[0_20px_60px_-38px_rgba(15,23,42,0.35)] backdrop-blur-xl"
               : "border-transparent bg-transparent",
+            mobileOpen
+              ? "overflow-hidden rounded-[2rem] lg:overflow-visible lg:rounded-full"
+              : "rounded-full",
           )}
         >
           <div className="flex min-h-16 items-center justify-between gap-4">
@@ -204,7 +220,7 @@ export function Navbar() {
                 transition={{ duration: 0.18, ease: "easeOut" }}
                 className="overflow-hidden border-t border-[var(--border)] lg:hidden"
               >
-                <nav className="flex flex-col gap-2 py-4">
+                <nav className="flex max-h-[calc(100svh-6.5rem)] flex-col gap-2 overflow-y-auto py-4">
                   {navLinks.slice(0, 2).map((link) => (
                     <Link
                       key={link.href}
@@ -308,7 +324,7 @@ export function Navbar() {
                     </Link>
                   ))}
 
-                  <Button href="/contact" className="mt-2 w-full">
+                  <Button href="/contact" className="mt-3 w-full">
                     Book a Strategy Call
                   </Button>
                 </nav>
