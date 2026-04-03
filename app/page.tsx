@@ -46,14 +46,14 @@ export default function Home() {
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(95,160,255,0.22),transparent_32%),radial-gradient(circle_at_top_right,rgba(17,94,212,0.1),transparent_28%),linear-gradient(180deg,rgba(244,248,255,0.82)_0%,rgba(255,255,255,0.34)_58%,rgba(255,255,255,0)_100%)]"
         />
         <Container className="relative pb-18 pt-4 sm:pb-24 sm:pt-6">
-          <div className="grid items-center gap-14 lg:grid-cols-[1.02fr_0.98fr]">
-            <Reveal className="space-y-6 sm:space-y-8">
+          <div className="grid items-center gap-10 sm:gap-14 lg:grid-cols-[1.02fr_0.98fr]">
+            <Reveal className="min-w-0 space-y-6 sm:space-y-8">
               <span className="inline-flex w-fit items-center rounded-full border border-[var(--border)] bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-700)] shadow-sm">
                 AI-First Company
               </span>
 
               <div className="space-y-5 sm:space-y-6">
-                <h1 className="max-w-[11.5ch] break-words text-[clamp(2.25rem,9vw,3.3rem)] font-semibold leading-[0.98] tracking-[-0.065em] text-[var(--foreground)] sm:max-w-4xl sm:text-5xl lg:text-[4.3rem] lg:leading-[1.02]">
+                <h1 className="max-w-[10.5ch] text-[clamp(2rem,7.5vw,3rem)] font-semibold leading-[0.98] tracking-[-0.06em] text-[var(--foreground)] sm:max-w-4xl sm:text-5xl lg:text-[4.3rem] lg:leading-[1.02]">
                   We Build AI Systems, High-End Websites, and Growth Engines for
                   Modern Businesses
                 </h1>
@@ -73,7 +73,7 @@ export default function Home() {
                 </Button>
               </div>
 
-              <ul className="flex flex-wrap gap-2.5 pb-1 sm:flex-nowrap sm:overflow-x-auto sm:pb-0 sm:pr-2 sm:[scrollbar-width:none]">
+              <ul className="flex max-w-full flex-wrap gap-2.5 pb-1 sm:flex-nowrap sm:overflow-x-auto sm:pb-0 sm:pr-2 sm:[scrollbar-width:none]">
                 {featurePills.map((pill) => (
                   <li key={pill.href} className="flex-shrink-0">
                     <Link
@@ -87,7 +87,7 @@ export default function Home() {
               </ul>
             </Reveal>
 
-            <Reveal delay={0.1}>
+            <Reveal delay={0.1} className="min-w-0">
               <HeroVisual />
             </Reveal>
           </div>
