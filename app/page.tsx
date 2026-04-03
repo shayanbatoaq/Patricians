@@ -45,19 +45,19 @@ export default function Home() {
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(95,160,255,0.22),transparent_32%),radial-gradient(circle_at_top_right,rgba(17,94,212,0.1),transparent_28%),linear-gradient(180deg,rgba(244,248,255,0.82)_0%,rgba(255,255,255,0.34)_58%,rgba(255,255,255,0)_100%)]"
         />
-        <Container className="relative pb-20 pt-6 sm:pb-24">
+        <Container className="relative pb-18 pt-4 sm:pb-24 sm:pt-6">
           <div className="grid items-center gap-14 lg:grid-cols-[1.02fr_0.98fr]">
-            <Reveal className="space-y-8">
+            <Reveal className="space-y-6 sm:space-y-8">
               <span className="inline-flex w-fit items-center rounded-full border border-[var(--border)] bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-700)] shadow-sm">
                 AI-First Company
               </span>
 
-              <div className="space-y-6">
-                <h1 className="max-w-4xl text-balance text-4xl font-semibold tracking-[-0.07em] text-[var(--foreground)] sm:text-5xl lg:text-[4.3rem] lg:leading-[1.02]">
+              <div className="space-y-5 sm:space-y-6">
+                <h1 className="max-w-[11.5ch] break-words text-[clamp(2.25rem,9vw,3.3rem)] font-semibold leading-[0.98] tracking-[-0.065em] text-[var(--foreground)] sm:max-w-4xl sm:text-5xl lg:text-[4.3rem] lg:leading-[1.02]">
                   We Build AI Systems, High-End Websites, and Growth Engines for
                   Modern Businesses
                 </h1>
-                <p className="max-w-2xl text-base leading-8 text-[var(--muted-foreground)] sm:text-lg">
+                <p className="max-w-2xl text-[0.98rem] leading-7 text-[var(--muted-foreground)] sm:text-lg sm:leading-8">
                   Patricians helps brands scale with intelligent customer
                   experiences, high-performance websites, AI-enhanced digital
                   marketing, and modern mobile product development.
@@ -65,18 +65,20 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row">
-                <Button href="/contact">Get Started</Button>
-                <Button href="/services" variant="secondary">
+                <Button href="/contact" className="w-full sm:w-auto">
+                  Get Started
+                </Button>
+                <Button href="/services" variant="secondary" className="w-full sm:w-auto">
                   View Services
                 </Button>
               </div>
 
-              <ul className="flex flex-nowrap gap-2.5 overflow-x-auto pb-2 sm:gap-3 sm:pb-0">
+              <ul className="flex flex-wrap gap-2.5 pb-1 sm:flex-nowrap sm:overflow-x-auto sm:pb-0 sm:pr-2 sm:[scrollbar-width:none]">
                 {featurePills.map((pill) => (
                   <li key={pill.href} className="flex-shrink-0">
                     <Link
                       href={pill.href}
-                      className="group inline-flex items-center rounded-full border border-[var(--border)] bg-white/88 px-3.5 py-2 text-[0.82rem] font-semibold text-[var(--muted-foreground)] shadow-[0_14px_34px_-26px_rgba(15,23,42,0.3)] transition-all duration-300 hover:border-[var(--brand-300)] hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(238,245,255,0.98)_100%)] hover:text-[var(--brand-700)] hover:shadow-[0_18px_46px_-24px_rgba(17,94,212,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-300)] focus-visible:ring-offset-2 sm:px-4 sm:text-sm"
+                      className="group inline-flex items-center rounded-full border border-[var(--border)] bg-white/88 px-3 py-2 text-[0.77rem] font-semibold text-[var(--muted-foreground)] shadow-[0_14px_34px_-26px_rgba(15,23,42,0.3)] transition-all duration-300 hover:border-[var(--brand-300)] hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(238,245,255,0.98)_100%)] hover:text-[var(--brand-700)] hover:shadow-[0_18px_46px_-24px_rgba(17,94,212,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-300)] focus-visible:ring-offset-2 sm:px-4 sm:text-sm"
                     >
                       <span className="whitespace-nowrap">{pill.label}</span>
                     </Link>
