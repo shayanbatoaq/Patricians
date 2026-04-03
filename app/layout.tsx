@@ -24,10 +24,10 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className="h-full antialiased"
+      className="h-full overflow-x-hidden antialiased"
     >
-      <body className="min-h-full bg-background text-foreground">
-        <div className="relative flex min-h-screen flex-col">
+      <body className="min-h-full overflow-x-hidden bg-background text-foreground">
+        <div className="relative flex min-h-screen flex-col overflow-x-hidden">
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
@@ -35,17 +34,17 @@ export function Logo({
       className={cn("inline-flex items-center text-left", className)}
       aria-label="Patricians home"
     >
-      <Image
+      <img
         src="/patricians-logo.png"
         alt="Patricians"
         width={iconOnly ? 72 : selected.width}
         height={iconOnly ? 12 : Math.round((selected.width / 1080) * 182)}
-        priority
-        sizes={iconOnly ? "72px" : selected.sizes}
         className={cn(
           "h-auto object-contain",
           iconOnly ? "w-[72px]" : selected.className,
         )}
+        loading="eager"
+        decoding="async"
       />
     </Link>
   );
