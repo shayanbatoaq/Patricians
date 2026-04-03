@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import Link from "next/link";
+import { connection } from "next/server";
 
 import { ArrowRight, Bot, Sparkles, Waypoints } from "lucide-react";
 
@@ -41,7 +42,9 @@ const featurePills = [
   },
 ] as const;
 
-export default function Home() {
+export default async function Home() {
+  await connection();
+
   return (
     <>
       <section className="relative overflow-hidden pt-32">
