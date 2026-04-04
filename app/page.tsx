@@ -14,10 +14,20 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { ServiceCard } from "@/components/ui/service-card";
 import { HeroVisual } from "@/components/visuals/hero-visual";
 import { homeProcess, homeWhyPatricians, services } from "@/data/site";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Home",
-};
+export const metadata: Metadata = buildPageMetadata({
+  title: "Patricians | AI Automation & Web Development Agency",
+  description:
+    "Patricians is an AI automation and web development agency building premium websites, branded AI systems, chatbot workflows, and modern digital growth infrastructure.",
+  path: "/",
+  keywords: [
+    "Patricians home",
+    "Patricians brand",
+    "Patricians AI systems",
+    "Patricians websites",
+  ],
+});
 
 const featurePills = [
   {
@@ -61,13 +71,13 @@ export default async function Home() {
 
               <div className="space-y-5 sm:space-y-6">
                 <h1 className="max-w-[9.8ch] break-words text-[clamp(1.72rem,6.6vw,2.85rem)] font-semibold leading-[1.01] tracking-[-0.055em] text-[var(--foreground)] sm:max-w-4xl sm:text-5xl sm:leading-[0.98] lg:text-[4.3rem] lg:leading-[1.02]">
-                  We Build AI Systems, High-End Websites, and Growth Engines for
-                  Modern Businesses
+                  Patricians builds AI systems, high-end websites, and growth
+                  engines for modern businesses
                 </h1>
                 <p className="max-w-2xl text-[0.94rem] leading-7 text-[var(--muted-foreground)] sm:text-lg sm:leading-8">
-                  Patricians helps brands scale with intelligent customer
-                  experiences, high-performance websites, AI-enhanced digital
-                  marketing, and modern mobile product development.
+                  Patricians helps ambitious brands scale with intelligent
+                  customer experiences, high-performance websites, AI-enhanced
+                  digital marketing, and modern mobile product development.
                 </p>
               </div>
 
@@ -79,6 +89,31 @@ export default async function Home() {
                   View Services
                 </Button>
               </div>
+
+              <p className="text-sm leading-7 text-[var(--muted-foreground)]">
+                Learn more{" "}
+                <Link
+                  href="/about"
+                  className="font-medium text-[var(--brand-700)] underline-offset-4 transition-colors duration-200 hover:text-[var(--brand-600)] hover:underline"
+                >
+                  about Patricians
+                </Link>
+                , explore the{" "}
+                <Link
+                  href="/services"
+                  className="font-medium text-[var(--brand-700)] underline-offset-4 transition-colors duration-200 hover:text-[var(--brand-600)] hover:underline"
+                >
+                  full service lineup
+                </Link>
+                , or{" "}
+                <Link
+                  href="/contact"
+                  className="font-medium text-[var(--brand-700)] underline-offset-4 transition-colors duration-200 hover:text-[var(--brand-600)] hover:underline"
+                >
+                  contact the Patricians team
+                </Link>
+                .
+              </p>
 
               <div className="w-full pb-1 sm:pb-0">
                 <ul className="flex w-full min-w-0 flex-nowrap gap-1.5 sm:w-auto sm:gap-2.5">

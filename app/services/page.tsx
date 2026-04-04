@@ -10,19 +10,22 @@ import { Reveal } from "@/components/ui/reveal";
 import { SectionHeader } from "@/components/ui/section-header";
 import { ServiceCard } from "@/components/ui/service-card";
 import { homeProcess, services } from "@/data/site";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Services",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Patricians Services | AI Automation, Web Development, Marketing, and Mobile",
   description:
-    "Explore Patricians services across website chatbots, high-end websites, AI digital marketing, and AI-enhanced mobile app development.",
-};
+    "Explore Patricians services across AI chatbots for websites, high-end web development, AI digital marketing systems, and AI-enhanced mobile app development.",
+  path: "/services",
+  keywords: ["Patricians services", "Patricians web development", "Patricians AI automation"],
+});
 
 export default function ServicesPage() {
   return (
     <>
       <PageHero
         eyebrow="Services"
-        title="Service lines built for modern businesses that need better systems and sharper execution"
+        title="Patricians services built for modern businesses that need better systems and sharper execution"
         description="Patricians combines high-end web delivery, chat experiences, smarter marketing workflows, and modern mobile product development into a focused premium offering."
         primaryAction={{ label: "Book a Strategy Call", href: "/contact" }}
       >

@@ -11,19 +11,22 @@ import { PageHero } from "@/components/ui/page-hero";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeader } from "@/components/ui/section-header";
 import { contactDetails, contactFaq, socialLinks } from "@/data/site";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Contact Patricians | AI Automation & Web Development Agency",
   description:
-    "Start a conversation with Patricians about premium websites, AI chatbots, AI-powered marketing systems, or mobile product development.",
-};
+    "Contact Patricians to discuss AI automation, premium web development, chatbot systems, digital marketing workflows, or mobile product development.",
+  path: "/contact",
+  keywords: ["contact Patricians", "Patricians inquiry", "Patricians strategy call"],
+});
 
 export default function ContactPage() {
   return (
     <>
       <PageHero
         eyebrow="Contact"
-        title="Start the right conversation, then build with clarity"
+        title="Contact Patricians and start the right conversation"
         description="If you are planning a premium website, a chatbot, a smarter marketing workflow, or an AI-enhanced mobile product, Patricians can help shape the path forward."
       >
         <div className="rounded-[1.8rem] border border-[var(--border)] bg-white p-6 shadow-[0_24px_70px_-42px_rgba(15,23,42,0.28)]">

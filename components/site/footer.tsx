@@ -24,6 +24,30 @@ export function Footer() {
               {companyTagline}. Patricians builds AI systems, premium websites,
               and modern digital growth infrastructure for ambitious businesses.
             </p>
+            <p className="max-w-sm text-sm leading-7 text-[var(--muted-foreground)]">
+              Explore{" "}
+              <Link
+                href="/about"
+                className="font-medium text-[var(--brand-700)] underline-offset-4 transition-colors duration-200 hover:text-[var(--brand-600)] hover:underline"
+              >
+                about Patricians
+              </Link>
+              , review the{" "}
+              <Link
+                href="/services"
+                className="font-medium text-[var(--brand-700)] underline-offset-4 transition-colors duration-200 hover:text-[var(--brand-600)] hover:underline"
+              >
+                service lineup
+              </Link>
+              , or{" "}
+              <Link
+                href="/contact"
+                className="font-medium text-[var(--brand-700)] underline-offset-4 transition-colors duration-200 hover:text-[var(--brand-600)] hover:underline"
+              >
+                contact the team
+              </Link>
+              .
+            </p>
           </div>
 
           <div className="space-y-4">

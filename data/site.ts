@@ -47,6 +47,8 @@ export type Service = {
   icon: string;
   label: string;
   title: string;
+  seoTitle: string;
+  seoDescription: string;
   eyebrow: string;
   shortDescription: string;
   description: string;
@@ -98,6 +100,9 @@ export const services = [
     icon: "message",
     label: "AI Chatbots for Websites",
     title: "AI Chatbots for Websites",
+    seoTitle: "AI Chatbots for Websites | Patricians",
+    seoDescription:
+      "Patricians builds branded AI chatbots for websites that answer questions, capture leads, qualify prospects, and improve customer experience.",
     eyebrow: "Always-On Customer Experience",
     shortDescription:
       "Premium website chatbots designed for 24/7 support, lead capture, qualification, FAQs, and conversion support.",
@@ -183,6 +188,9 @@ export const services = [
     icon: "screen",
     label: "High-End Websites Within Days",
     title: "High-End Websites Within Days",
+    seoTitle: "High-End Websites Within Days | Patricians",
+    seoDescription:
+      "Patricians designs and develops high-end websites within days for businesses that need premium presentation, strong front-end execution, and clear conversion paths.",
     eyebrow: "Fast Premium Delivery",
     shortDescription:
       "High-end websites delivered with speed, modern design direction, strong front-end quality, and clear conversion intent.",
@@ -268,6 +276,9 @@ export const services = [
     icon: "megaphone",
     label: "AI Digital Marketing",
     title: "AI Digital Marketing",
+    seoTitle: "AI Digital Marketing | Patricians",
+    seoDescription:
+      "Patricians creates AI digital marketing systems that improve content workflows, campaign efficiency, engagement, and performance for growing brands.",
     eyebrow: "Smarter Growth Systems",
     shortDescription:
       "AI-supported digital marketing systems focused on content workflows, campaign efficiency, iteration, and stronger engagement.",
@@ -353,6 +364,9 @@ export const services = [
     icon: "smartphone",
     label: "AI-Enhanced Mobile App Development",
     title: "AI-Enhanced Mobile App Development",
+    seoTitle: "AI-Enhanced Mobile App Development | Patricians",
+    seoDescription:
+      "Patricians develops AI-enhanced mobile apps and MVPs with modern UX, faster launch timelines, and product-focused execution.",
     eyebrow: "Fast Product Launches",
     shortDescription:
       "AI-enhanced MVP app development for modern mobile products, business use cases, and faster launch paths.",

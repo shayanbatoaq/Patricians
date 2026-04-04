@@ -14,6 +14,7 @@ import { PageHero } from "@/components/ui/page-hero";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeader } from "@/components/ui/section-header";
 import { getServiceBySlug, services } from "@/data/site";
+import { buildPageMetadata } from "@/lib/seo";
 
 const accentMap = {
   "ai-chatbots":
@@ -44,10 +45,12 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
-    title: service.title,
-    description: service.shortDescription,
-  };
+  return buildPageMetadata({
+    title: service.seoTitle,
+    description: service.seoDescription,
+    path: `/services/${service.slug}`,
+    keywords: [service.title, `${service.title} agency`, `Patricians ${service.title}`],
+  });
 }
 
 export default async function ServicePage({

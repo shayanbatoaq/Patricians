@@ -8,19 +8,22 @@ import { PageHero } from "@/components/ui/page-hero";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeader } from "@/components/ui/section-header";
 import { aboutPrinciples } from "@/data/site";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About",
+export const metadata: Metadata = buildPageMetadata({
+  title: "About Patricians | AI Automation & Web Development Agency",
   description:
-    "Learn how Patricians is evolving from digital delivery into an AI-first systems company focused on modern products and intelligent growth.",
-};
+    "Learn how Patricians is evolving into an AI automation and web development agency focused on premium digital systems, modern products, and intelligent growth.",
+  path: "/about",
+  keywords: ["about Patricians", "Patricians agency story", "Patricians company"],
+});
 
 export default function AboutPage() {
   return (
     <>
       <PageHero
         eyebrow="About Patricians"
-        title="A premium company evolving from digital execution into intelligent systems"
+        title="Patricians is evolving from digital execution into intelligent systems"
         description="Patricians began with digital marketing and web development. Today the company is shifting toward modern digital products, intelligent customer experiences, and business-facing systems that create cleaner growth."
         primaryAction={{ label: "Book a Strategy Call", href: "/contact" }}
         secondaryAction={{ label: "View Services", href: "/services" }}
@@ -252,7 +255,7 @@ export default function AboutPage() {
       </section>
 
       <CTASection
-        title="If you need a partner for intelligent systems and modern digital execution, let’s talk"
+        title="If you need a partner for intelligent systems and modern digital execution, let's talk"
         description="Patricians works best with businesses that value clarity, premium presentation, and practical AI-first progress."
         secondaryLabel="Explore Services"
         secondaryHref="/services"
