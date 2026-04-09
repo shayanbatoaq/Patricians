@@ -6,6 +6,14 @@ import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeader } from "@/components/ui/section-header";
 import { digitalMarketingPlans } from "@/data/site";
+import { cn } from "@/lib/utils";
+
+const scopeTags = [
+  "Facebook + Instagram only",
+  "Organic content",
+  "Reels editing",
+  "Meta ads scaling",
+] as const;
 
 export function MarketingPlans() {
   return (
@@ -26,35 +34,24 @@ export function MarketingPlans() {
       <Container className="relative">
         <Reveal>
           <SectionHeader
-            eyebrow="Marketing Plans"
-            title="Five digital marketing retainers designed around growth stage and execution depth"
-            description="Each plan is structured as a clear operating package, from early brand presence to paid growth management and ongoing optimization."
+            align="center"
+            eyebrow="Meta Marketing Packages"
+            className="items-center text-center"
+            title="Clear Meta-only packages for Facebook and Instagram growth"
+            description="Each tier has a distinct purpose, from building your presence to scaling with paid ads, so the right package is easy to understand in seconds."
           />
         </Reveal>
 
         <Reveal delay={0.06}>
-          <div className="mt-8 rounded-[1.8rem] border border-[rgba(17,94,212,0.12)] bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(238,245,255,0.96)_100%)] p-6 shadow-[0_22px_70px_-42px_rgba(17,94,212,0.18)]">
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-              <div className="flex items-start gap-4">
-                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[var(--brand-50)] text-[var(--brand-700)]">
-                  <Sparkles className="h-5 w-5" />
-                </span>
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--brand-700)]">
-                    Positioning
-                  </p>
-                  <p className="mt-2 text-sm leading-7 text-[var(--muted-foreground)]">
-                    These plans are built to help businesses choose the right growth
-                    rhythm now, then scale into more advanced execution later.
-                  </p>
-                </div>
-              </div>
-
-              <Button href="/contact" variant="secondary">
-                Book a Strategy Call
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
+          <div className="mt-8 flex flex-wrap justify-center gap-2">
+            {scopeTags.map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-[var(--border)] bg-white/92 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-700)] shadow-sm"
+              >
+                {item}
+              </span>
+            ))}
           </div>
         </Reveal>
 
@@ -72,34 +69,64 @@ export function MarketingPlans() {
               <Reveal
                 key={plan.name}
                 className={revealClassName}
-                delay={0.08 + index * 0.04}
+                delay={0.1 + index * 0.04}
               >
                 <article
-                  className={`group h-full rounded-[1.9rem] border p-7 shadow-[0_24px_70px_-40px_rgba(15,23,42,0.2)] transition-all duration-300 hover:-translate-y-2 ${plan.accentSoftClassName}`}
+                  className={cn(
+                    "group flex h-full flex-col rounded-[2rem] border p-6 shadow-[0_24px_70px_-40px_rgba(15,23,42,0.2)] transition-all duration-300 hover:-translate-y-2 sm:p-7",
+                    plan.featured
+                      ? "border-[rgba(17,94,212,0.2)] bg-[linear-gradient(180deg,rgba(255,255,255,0.99)_0%,rgba(255,247,214,0.95)_100%)] shadow-[0_30px_90px_-42px_rgba(17,94,212,0.34)] xl:-translate-y-3"
+                      : plan.accentSoftClassName,
+                  )}
                 >
                   <div
-                    className={`h-1.5 rounded-full bg-gradient-to-r ${plan.accentClassName}`}
+                    className={cn(
+                      "h-1.5 rounded-full bg-gradient-to-r",
+                      plan.accentClassName,
+                    )}
                   />
 
                   <div className="mt-6 flex items-start justify-between gap-4">
                     <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-[var(--foreground)] shadow-[0_18px_44px_-28px_rgba(15,23,42,0.22)]">
                       <Icon className="h-5 w-5" />
                     </span>
-                    <span className="rounded-full border border-white/80 bg-white/88 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-700)] shadow-sm">
-                      {plan.price}
-                    </span>
+                    {plan.badge ? (
+                      <span className="rounded-full border border-[rgba(17,94,212,0.14)] bg-white/92 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[var(--brand-700)] shadow-sm">
+                        {plan.badge}
+                      </span>
+                    ) : null}
                   </div>
 
                   <div className="mt-6">
                     <h3 className="text-2xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
                       {plan.name}
                     </h3>
+                    <p className="mt-4 text-4xl font-semibold tracking-[-0.06em] text-[var(--foreground)]">
+                      {plan.price}
+                    </p>
                     <p className="mt-3 text-sm font-medium uppercase tracking-[0.14em] text-[var(--brand-700)]">
-                      Goal
+                      {plan.tagline}
                     </p>
-                    <p className="mt-2 text-sm leading-7 text-[var(--muted-foreground)]">
-                      {plan.goal}
+                  </div>
+
+                  <div className="mt-6 rounded-[1.4rem] border border-[var(--border)] bg-white/78 p-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--brand-700)]">
+                      Best for
                     </p>
+                    <p className="mt-3 text-sm leading-7 text-[var(--muted-foreground)]">
+                      {plan.bestFor}
+                    </p>
+                  </div>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {plan.highlights.map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-full border border-[var(--border)] bg-[var(--surface-alt)] px-3 py-1 text-xs font-medium text-[var(--muted-foreground)]"
+                      >
+                        {item}
+                      </span>
+                    ))}
                   </div>
 
                   <div className="mt-6 h-px bg-[linear-gradient(90deg,rgba(207,218,232,0.18)_0%,rgba(207,218,232,0.82)_28%,rgba(207,218,232,0.82)_72%,rgba(207,218,232,0.18)_100%)]" />
@@ -116,8 +143,17 @@ export function MarketingPlans() {
                     ))}
                   </ul>
 
+                  <div className="mt-6 rounded-[1.4rem] border border-[var(--border)] bg-white/84 p-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--brand-700)]">
+                      Reels strategy
+                    </p>
+                    <p className="mt-3 text-sm leading-7 text-[var(--muted-foreground)]">
+                      {plan.reelsStrategy}
+                    </p>
+                  </div>
+
                   <Button href="/contact" className="mt-7 w-full justify-between">
-                    Choose {plan.name}
+                    {plan.ctaLabel}
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </article>
@@ -125,6 +161,25 @@ export function MarketingPlans() {
             );
           })}
         </div>
+
+        <Reveal delay={0.34}>
+          <div className="mt-8 rounded-[1.8rem] border border-[rgba(17,94,212,0.12)] bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(238,245,255,0.96)_100%)] p-6 shadow-[0_22px_70px_-42px_rgba(17,94,212,0.18)]">
+            <div className="flex items-start gap-4">
+              <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[var(--brand-50)] text-[var(--brand-700)]">
+                <Sparkles className="h-5 w-5" />
+              </span>
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--brand-700)]">
+                  Reels Note
+                </p>
+                <p className="mt-2 text-sm leading-7 text-[var(--muted-foreground)]">
+                  Client provides raw video clips for reels. We handle editing,
+                  optimization, and strategy.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </Container>
     </section>
   );

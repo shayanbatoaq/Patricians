@@ -67,11 +67,17 @@ export type Service = {
 export type MarketingPlan = {
   name: string;
   price: string;
-  goal: string;
+  tagline: string;
+  bestFor: string;
   icon: string;
+  badge?: string;
+  featured?: boolean;
   accentClassName: string;
   accentSoftClassName: string;
+  highlights: string[];
   includes: string[];
+  reelsStrategy: string;
+  ctaLabel: string;
 };
 
 export type ChatbotPlan = {
@@ -278,86 +284,87 @@ export const services = [
     title: "AI Digital Marketing",
     seoTitle: "AI Digital Marketing | Patricians",
     seoDescription:
-      "Patricians creates AI digital marketing systems that improve content workflows, campaign efficiency, engagement, and performance for growing brands.",
+      "Patricians delivers Meta-only digital marketing for Facebook and Instagram with content systems, reels editing, ad setup, and reporting for growing businesses.",
     eyebrow: "Smarter Growth Systems",
     shortDescription:
-      "AI-supported digital marketing systems focused on content workflows, campaign efficiency, iteration, and stronger engagement.",
+      "Meta-only digital marketing for Facebook and Instagram with premium content systems, reels strategy, and ad-ready execution.",
     description:
-      "We help businesses improve digital marketing execution with AI-supported systems that make strategy easier to run, analyze, and refine.",
+      "We help businesses grow on Facebook and Instagram with clearer content systems, reels editing, Meta ads support, and reporting that is easy to understand.",
     focus: [
-      "Content and campaign workflows",
-      "Efficiency and smarter iteration",
-      "Engagement and performance improvement",
+      "Facebook + Instagram management",
+      "Content, reels, and Meta ads",
+      "Clearer reporting and optimization",
     ],
-    introTitle: "Marketing systems that move with more discipline",
+    introTitle: "Meta growth systems with clearer structure",
     introText:
-      "Patricians approaches AI marketing as operational leverage. We build systems that help teams produce, test, and improve campaigns with better speed, consistency, and insight.",
+      "Patricians keeps digital marketing focused on the Meta platforms that matter most for many businesses: Facebook and Instagram. We build a cleaner operating rhythm around content, reels, ads, and reporting so growth feels easier to run, refine, and scale.",
     benefits: [
       {
-        title: "More efficient output",
+        title: "Stronger Meta presence",
         description:
-          "Use AI support to reduce production drag across planning, content, and campaign execution.",
+          "Stay active on Facebook and Instagram with sharper page setup, clearer content direction, and a more reliable posting rhythm.",
         icon: "wand",
       },
       {
-        title: "Smarter iteration",
+        title: "Better short-form creative",
         description:
-          "Create faster feedback loops around what is landing, where it is slipping, and what to change next.",
+          "Use edited reels, better hooks, and cleaner creative structure to improve reach, engagement, and response quality.",
         icon: "chart",
       },
       {
-        title: "Clearer engagement systems",
+        title: "More disciplined growth",
         description:
-          "Support campaigns with stronger workflows, response quality, and follow-up discipline.",
+          "Connect organic content, conversion-focused reels, and Meta ads into a growth system that feels easier to manage.",
         icon: "briefcase",
       },
     ],
     process: [
       {
         step: "01",
-        title: "Growth diagnosis",
+        title: "Meta audit and direction",
         description:
-          "We assess current channels, production flow, bottlenecks, and campaign opportunities.",
+          "We review your current Facebook and Instagram presence, offer positioning, and the content gaps holding growth back.",
       },
       {
         step: "02",
-        title: "System design",
+        title: "Content and reel planning",
         description:
-          "We shape the content, campaign, and reporting workflow you need around your business goals.",
+          "We shape the monthly content mix, reel direction, captions, and CTA structure around your business goals.",
       },
       {
         step: "03",
-        title: "Execution layer",
+        title: "Execution and ads layer",
         description:
-          "We implement AI-supported processes that improve speed, consistency, and team capacity.",
+          "We publish the content, edit client-provided clips into reels, and launch or manage Meta ads when the selected plan includes paid growth.",
       },
       {
         step: "04",
-        title: "Performance refinement",
+        title: "Reporting and refinement",
         description:
-          "We review outputs and optimize the system based on what drives better response and results.",
+          "We track the right signals, review performance, and refine the creative or targeting based on what is getting response.",
       },
     ],
     deliverables: [
-      "AI-supported content workflow structure",
-      "Campaign planning and production systems",
-      "Engagement and iteration improvements",
-      "Marketing reporting and optimization rhythm",
-      "Smarter process design for leaner execution",
+      "Facebook and Instagram page setup or optimization",
+      "Monthly content planning, design direction, and posting cadence",
+      "Reels editing from client-provided raw video clips",
+      "Captions, hashtags, CTA writing, and content structure",
+      "Meta ads setup, monitoring, or optimization depending on plan",
+      "Monthly reporting with performance insights and next-step refinement",
     ],
     whyPatricians: [
-      "We focus on useful marketing systems, not inflated AI promises.",
-      "We think in workflows, outputs, and iteration discipline.",
-      "We bring the same premium execution standard to growth as we do to product and web work.",
+      "We keep the offer focused on Meta instead of spreading effort across too many channels.",
+      "We structure the packages so the jump from presence to engagement to leads to paid scale is easy to understand.",
+      "We bring the same premium creative direction and disciplined execution to marketing that we bring to web and product work.",
     ],
     heroHighlights: [
-      "AI-supported content and campaign workflows",
-      "Better efficiency and smarter iteration",
-      "Performance-focused system design for modern marketing",
+      "Meta-only strategy for Facebook and Instagram",
+      "Organic content, reels, and paid ads in one clear progression",
+      "Packages designed around clarity, conversion, and scale",
     ],
-    ctaTitle: "Modernize your growth execution with AI support",
+    ctaTitle: "Build a clearer Meta growth system",
     ctaText:
-      "We can help you build a leaner, sharper marketing system that improves how work gets done.",
+      "If you want a sharper Facebook and Instagram presence with a clearer growth plan, we can build the right package around it.",
   },
   {
     slug: "mobile-app-development",
@@ -550,79 +557,109 @@ export const digitalMarketingPlans: ReadonlyArray<MarketingPlan> = [
   {
     name: "Ignite",
     price: "$99 / month",
-    goal: "Establish credibility and online presence",
+    tagline: "Start your online presence",
+    bestFor: "New businesses",
     icon: "flame",
     accentClassName: "from-emerald-500 via-emerald-400 to-lime-300",
     accentSoftClassName:
       "border-emerald-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(236,253,245,0.96)_100%)]",
+    highlights: ["8 posts / month", "0-2 reels / month", "Meta setup"],
     includes: [
-      "Social media setup and optimization",
-      "8 static posts per month",
-      "2 reels per month",
-      "Basic SEO setup",
-      "Basic analytics setup",
+      "Meta page setup and optimization for Facebook and Instagram",
+      "Static content posting with a consistent monthly schedule",
+      "Basic captions and hashtags",
+      "Monthly performance summary",
     ],
+    reelsStrategy:
+      "Basic presence only with simple edits or slideshow reels. No advanced editing or trend-led reel strategy.",
+    ctaLabel: "Get Started",
   },
   {
     name: "Propel",
     price: "$149 / month",
-    goal: "Improve engagement and brand consistency",
+    tagline: "Build an engaged audience",
+    bestFor: "Businesses that want better engagement",
     icon: "rocket",
     accentClassName: "from-sky-600 via-blue-500 to-cyan-300",
     accentSoftClassName:
       "border-sky-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(239,246,255,0.96)_100%)]",
+    highlights: ["12 posts / month", "4 reels / month", "Audience growth"],
     includes: [
-      "Social platform management",
-      "12-15 posts per month",
-      "4 reels per month",
-      "Basic paid ads strategy support",
+      "Static posts and carousels built around educational, promotional, and trust content pillars",
+      "Caption hooks and call-to-actions",
+      "Basic competitor analysis",
+      "Monthly insights and improvement recommendations",
     ],
+    reelsStrategy:
+      "Educational and relatable reels designed to earn saves, shares, and better audience engagement.",
+    ctaLabel: "Build My Brand",
   },
   {
     name: "Elevate",
     price: "$199 / month",
-    goal: "Increase visibility and generate qualified leads",
+    tagline: "Turn followers into customers",
+    bestFor: "Service-based businesses that need leads",
     icon: "badge",
+    badge: "Most Popular",
+    featured: true,
     accentClassName: "from-amber-500 via-yellow-400 to-orange-300",
     accentSoftClassName:
       "border-amber-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(255,251,235,0.96)_100%)]",
+    highlights: ["16 posts / month", "6-8 reels / month", "Lead focused"],
     includes: [
-      "Brand style guide",
-      "20-25 posts per month",
-      "8 reels per month",
-      "Basic email marketing setup",
+      "Sales-driven content strategy",
+      "Offer and promotion content",
+      "DM and WhatsApp funnel guidance",
+      "Lead-focused captions and call-to-actions",
+      "Performance tracking for leads, clicks, and reach",
     ],
+    reelsStrategy:
+      "Problem-to-solution reels with clear calls-to-action designed to generate inquiries.",
+    ctaLabel: "Get More Leads",
   },
   {
     name: "Momentum",
     price: "$249 / month",
-    goal: "Maximize ROI and drive measurable conversions",
+    tagline: "Scale with paid ads",
+    bestFor: "Businesses ready to grow faster with ads",
     icon: "trending",
     accentClassName: "from-orange-600 via-orange-500 to-amber-300",
     accentSoftClassName:
       "border-orange-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(255,247,237,0.96)_100%)]",
+    highlights: ["16 posts / month", "8-10 reels / month", "Meta ads"],
     includes: [
-      "Conversion tracking setup",
-      "30 posts per month",
-      "12 reels per month",
-      "Paid campaign creation and optimization",
+      "Content optimized for both ads and organic posting",
+      "Meta Ads setup and campaign creation",
+      "Audience targeting",
+      "Ad creative direction",
+      "Weekly ad monitoring",
+      "Monthly ad performance reporting",
     ],
+    reelsStrategy:
+      "Hook-driven short-form reels designed for ad performance and creative testing.",
+    ctaLabel: "Scale My Growth",
   },
   {
     name: "Dominion",
     price: "$299 / month",
-    goal: "Scale, dominate, and operate with precision",
+    tagline: "Dominate your market",
+    bestFor: "Serious businesses scaling aggressively",
     icon: "target",
     accentClassName: "from-rose-600 via-red-500 to-orange-300",
     accentSoftClassName:
       "border-rose-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(255,241,242,0.96)_100%)]",
+    highlights: ["20-25 posts / month", "12-20 reels / month", "Full Meta scale"],
     includes: [
-      "Full paid ads management",
-      "40+ posts per month",
-      "20 reels per month",
-      "Dedicated account manager",
-      "Weekly optimization calls",
+      "Advanced content and reel strategy",
+      "Full Meta ads management and optimization",
+      "Retargeting strategy",
+      "Weekly strategy calls",
+      "Priority support",
+      "Advanced analytics and reporting",
     ],
+    reelsStrategy:
+      "High-volume, high-performance reels focused on reach, authority, and scaling.",
+    ctaLabel: "Let's Grow",
   },
 ] as const;
 
