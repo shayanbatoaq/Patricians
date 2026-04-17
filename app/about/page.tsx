@@ -24,7 +24,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About Patricians"
         title="Patricians is evolving from digital execution into intelligent systems"
-        description="Patricians began with digital marketing and web development. Today the company is shifting toward modern digital products, intelligent customer experiences, and business-facing systems that create cleaner growth."
+        description="Patricians began with social media marketing and web development. Today the company is shifting toward modern digital products, intelligent customer experiences, and business-facing systems that create cleaner growth."
         primaryAction={{ label: "Book a Strategy Call", href: "/contact" }}
         secondaryAction={{ label: "View Services", href: "/services" }}
       >
@@ -35,7 +35,7 @@ export default function AboutPage() {
             </p>
             <div className="mt-4 space-y-4">
               {[
-                "Digital marketing and premium websites",
+                "Social media marketing and premium websites",
                 "AI-powered customer experiences and chatbot systems",
                 "Automation-first operations and intelligent growth layers",
               ].map((item) => (
@@ -88,7 +88,7 @@ export default function AboutPage() {
               <div className="space-y-6 text-base leading-8 text-[var(--muted-foreground)]">
                 <p>
                   As client needs evolved, so did the work. Websites became
-                  customer experience platforms. Marketing needed stronger
+                  customer experience platforms. Social media needed stronger
                   systems. Conversations shifted toward AI-powered engagement,
                   sharper growth workflows, and AI-enhanced product delivery.
                 </p>
@@ -110,7 +110,7 @@ export default function AboutPage() {
             <SectionHeader
               eyebrow="Evolution"
               title="From agency-style delivery to AI systems thinking"
-              description="The transition is not about abandoning web and marketing. It is about reframing them inside a more intelligent operating model."
+              description="The transition is not about abandoning web and social media marketing. It is about reframing them inside a more intelligent operating model."
               align="center"
             />
           </Reveal>
@@ -120,7 +120,7 @@ export default function AboutPage() {
               {
                 icon: Layers3,
                 title: "Foundation",
-                text: "Premium websites and digital marketing built the original delivery discipline.",
+                text: "Premium websites and social media marketing built the original delivery discipline.",
               },
               {
                 icon: Bot,

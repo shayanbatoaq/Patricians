@@ -13,9 +13,9 @@ import { homeProcess, services } from "@/data/site";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Patricians Services | AI Automation, Web Development, Marketing, and Mobile",
+  title: "Patricians Services | AI Automation, Web Development, Social Media, and Mobile",
   description:
-    "Explore Patricians services across AI chatbots for websites, high-end web development, AI digital marketing systems, and AI-enhanced mobile app development.",
+    "Explore Patricians services across AI chatbots for websites, high-end web development, AI social media marketing systems, and AI-enhanced mobile app development.",
   path: "/services",
   keywords: ["Patricians services", "Patricians web development", "Patricians AI automation"],
 });
@@ -26,7 +26,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         title="Patricians services built for modern businesses that need better systems and sharper execution"
-        description="Patricians combines high-end web delivery, chat experiences, smarter marketing workflows, and modern mobile product development into a focused premium offering."
+        description="Patricians combines high-end web delivery, chat experiences, smarter social media workflows, and modern mobile product development into a focused premium offering."
         primaryAction={{ label: "Book a Strategy Call", href: "/contact" }}
       >
         <div className="grid gap-4 sm:grid-cols-2">
@@ -34,7 +34,7 @@ export default function ServicesPage() {
             {
               icon: Workflow,
               title: "AI-powered service stack",
-              text: "A tighter lineup focused on websites, chat experiences, smarter marketing, and modern product delivery.",
+              text: "A tighter lineup focused on websites, chat experiences, smarter social media, and modern product delivery.",
             },
             {
               icon: Sparkles,
@@ -91,7 +91,7 @@ export default function ServicesPage() {
             <SectionHeader
               eyebrow="Overview"
               title="A focused stack of services around systems, growth, and digital products"
-              description="Each service can stand alone, but they are designed to work together. A website can lead into a chatbot. Marketing can support launch and growth. Mobile can extend the product experience. The goal is connected value, not isolated deliverables."
+              description="Each service can stand alone, but they are designed to work together. A website can lead into a chatbot. Social media marketing can support launch and growth. Mobile can extend the product experience. The goal is connected value, not isolated deliverables."
             />
           </Reveal>
 

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeader } from "@/components/ui/section-header";
-import { digitalMarketingPlans } from "@/data/site";
+import { socialMediaMarketingPlans } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 const scopeTags = [
@@ -35,9 +35,9 @@ export function MarketingPlans() {
         <Reveal>
           <SectionHeader
             align="center"
-            eyebrow="Meta Marketing Packages"
+            eyebrow="Meta Social Media Packages"
             className="items-center text-center"
-            title="Clear Meta-only packages for Facebook and Instagram growth"
+            title="Clear Meta-only social media packages for Facebook and Instagram growth"
             description="Each tier has a distinct purpose, from building your presence to scaling with paid ads, so the right package is easy to understand in seconds."
           />
         </Reveal>
@@ -56,7 +56,7 @@ export function MarketingPlans() {
         </Reveal>
 
         <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-6">
-          {digitalMarketingPlans.map((plan, index) => {
+          {socialMediaMarketingPlans.map((plan, index) => {
             const Icon = getSiteIcon(plan.icon);
             const revealClassName =
               plan.name === "Momentum"

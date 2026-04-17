@@ -5,7 +5,7 @@ import { companyName, contactDetails, socialLinks } from "@/data/site";
 export const siteUrl = "https://patricians.pk";
 export const defaultSiteTitle = "Patricians | AI Automation & Web Development Agency";
 export const defaultSiteDescription =
-  "Patricians is an AI automation and web development agency building premium websites, branded AI systems, chatbot workflows, digital marketing operations, and modern mobile products.";
+  "Patricians is an AI automation and web development agency building premium websites, branded AI systems, chatbot workflows, social media marketing operations, and modern mobile products.";
 export const defaultOgImagePath = "/opengraph-image";
 
 const defaultKeywords = [
@@ -16,7 +16,8 @@ const defaultKeywords = [
   "AI automation agency",
   "web development agency",
   "AI chatbot agency",
-  "digital marketing agency",
+  "social media marketing agency",
+  "Meta marketing agency",
 ];
 
 type PageMetadataInput = {

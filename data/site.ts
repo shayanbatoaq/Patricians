@@ -39,7 +39,7 @@ export const socialLinks = [
 export type ServiceSlug =
   | "ai-chatbots"
   | "websites-in-3-days"
-  | "ai-digital-marketing"
+  | "ai-social-media-marketing"
   | "mobile-app-development";
 
 export type Service = {
@@ -278,16 +278,16 @@ export const services = [
       "If you need a premium web presence quickly, we can build it with quality and control.",
   },
   {
-    slug: "ai-digital-marketing",
+    slug: "ai-social-media-marketing",
     icon: "megaphone",
-    label: "AI Digital Marketing",
-    title: "AI Digital Marketing",
-    seoTitle: "AI Digital Marketing | Patricians",
+    label: "AI Social Media Marketing",
+    title: "AI Social Media Marketing",
+    seoTitle: "AI Social Media Marketing | Patricians",
     seoDescription:
-      "Patricians delivers Meta-only digital marketing for Facebook and Instagram with content systems, reels editing, ad setup, and reporting for growing businesses.",
+      "Patricians delivers Meta-only social media marketing for Facebook and Instagram with content systems, reels editing, ad setup, and reporting for growing businesses.",
     eyebrow: "Smarter Growth Systems",
     shortDescription:
-      "Meta-only digital marketing for Facebook and Instagram with premium content systems, reels strategy, and ad-ready execution.",
+      "Meta-only social media marketing for Facebook and Instagram with premium content systems, reels strategy, and ad-ready execution.",
     description:
       "We help businesses grow on Facebook and Instagram with clearer content systems, reels editing, Meta ads support, and reporting that is easy to understand.",
     focus: [
@@ -297,7 +297,7 @@ export const services = [
     ],
     introTitle: "Meta growth systems with clearer structure",
     introText:
-      "Patricians keeps digital marketing focused on the Meta platforms that matter most for many businesses: Facebook and Instagram. We build a cleaner operating rhythm around content, reels, ads, and reporting so growth feels easier to run, refine, and scale.",
+      "Patricians keeps social media marketing focused on the Meta platforms that matter most for many businesses: Facebook and Instagram. We build a cleaner operating rhythm around content, reels, ads, and reporting so growth feels easier to run, refine, and scale.",
     benefits: [
       {
         title: "Stronger Meta presence",
@@ -355,14 +355,14 @@ export const services = [
     whyPatricians: [
       "We keep the offer focused on Meta instead of spreading effort across too many channels.",
       "We structure the packages so the jump from presence to engagement to leads to paid scale is easy to understand.",
-      "We bring the same premium creative direction and disciplined execution to marketing that we bring to web and product work.",
+      "We bring the same premium creative direction and disciplined execution to social media that we bring to web and product work.",
     ],
     heroHighlights: [
       "Meta-only strategy for Facebook and Instagram",
       "Organic content, reels, and paid ads in one clear progression",
       "Packages designed around clarity, conversion, and scale",
     ],
-    ctaTitle: "Build a clearer Meta growth system",
+    ctaTitle: "Build a clearer Meta social media growth system",
     ctaText:
       "If you want a sharper Facebook and Instagram presence with a clearer growth plan, we can build the right package around it.",
   },
@@ -460,7 +460,7 @@ export const homeWhyPatricians = [
   {
     title: "AI-first thinking",
     description:
-      "We lead with intelligent customer experiences, AI-supported growth systems, and clear digital strategy before surface-level tactics.",
+      "We lead with intelligent customer experiences, AI-supported social media systems, and clear digital strategy before surface-level tactics.",
     icon: "brain",
   },
   {
@@ -494,7 +494,7 @@ export const homeProcess = [
     step: "02",
     title: "System Design",
     description:
-      "We shape the website, chatbot, marketing, or app approach around outcomes.",
+      "We shape the website, chatbot, social media marketing, or app approach around outcomes.",
   },
   {
     step: "03",
@@ -532,12 +532,12 @@ export const contactFaq = [
   {
     question: "Can we start with one focused service?",
     answer:
-      "Yes. Many engagements begin with a single website, chatbot, marketing system, or mobile product and expand from there.",
+      "Yes. Many engagements begin with a single website, chatbot, social media marketing plan, or mobile product and expand from there.",
   },
   {
     question: "Do you support ongoing work?",
     answer:
-      "Yes. Chatbots, marketing systems, and product improvements often benefit from an ongoing optimization model.",
+      "Yes. Chatbots, social media systems, and product improvements often benefit from an ongoing optimization model.",
   },
   {
     question: "Is Patricians only for large companies?",
@@ -549,11 +549,11 @@ export const contactFaq = [
 export const contactServiceOptions = [
   "AI Chatbots",
   "High-End Websites Within Days",
-  "AI Digital Marketing",
+  "AI Social Media Marketing",
   "Mobile App Development",
 ] as const;
 
-export const digitalMarketingPlans: ReadonlyArray<MarketingPlan> = [
+export const socialMediaMarketingPlans: ReadonlyArray<MarketingPlan> = [
   {
     name: "Ignite",
     price: "$99 / month",

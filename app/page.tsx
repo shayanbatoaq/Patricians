@@ -41,9 +41,9 @@ const featurePills = [
     href: "/services/websites-in-3-days",
   },
   {
-    label: "AI Marketing",
-    mobileLabel: "Marketing",
-    href: "/services/ai-digital-marketing",
+    label: "AI Social Media",
+    mobileLabel: "Social",
+    href: "/services/ai-social-media-marketing",
   },
   {
     label: "Mobile Apps",
@@ -77,7 +77,7 @@ export default async function Home() {
                 <p className="max-w-2xl text-[0.94rem] leading-7 text-[var(--muted-foreground)] sm:text-lg sm:leading-8">
                   Patricians helps ambitious brands scale with intelligent
                   customer experiences, high-performance websites, AI-enhanced
-                  digital marketing, and modern mobile product development.
+                  social media marketing, and modern mobile product development.
                 </p>
               </div>
 
@@ -164,7 +164,7 @@ export default async function Home() {
               <SectionHeader
                 eyebrow="Positioning"
                 title="Patricians is evolving into a premium AI systems company"
-                description="We deliver premium websites, AI-powered marketing, website chatbots, and modern mobile products through a more intelligent, systems-led approach. The goal is sharper execution, clearer digital experiences, and better growth infrastructure."
+                description="We deliver premium websites, AI-supported social media marketing, website chatbots, and modern mobile products through a more intelligent, systems-led approach. The goal is sharper execution, clearer digital experiences, and better growth infrastructure."
               />
             </Reveal>
 
@@ -188,11 +188,11 @@ export default async function Home() {
                     <Waypoints className="h-5 w-5" />
                   </div>
                   <h3 className="text-xl font-semibold tracking-[-0.03em] text-[var(--foreground)]">
-                    Smarter growth systems
+                    Smarter social media systems
                   </h3>
                   <p className="mt-3 text-sm leading-7 text-[var(--muted-foreground)]">
-                    AI-enhanced marketing, sharper iteration, and digital
-                    delivery that feels current, credible, and useful.
+                    AI-enhanced Meta social media marketing, sharper iteration,
+                    and digital delivery that feels current, credible, and useful.
                   </p>
                 </article>
 
@@ -201,7 +201,7 @@ export default async function Home() {
                     <Sparkles className="h-5 w-5" />
                   </div>
                   <h3 className="text-xl font-semibold tracking-[-0.03em] text-[var(--foreground)]">
-                    Premium execution across product, marketing, and web
+                    Premium execution across product, social media, and web
                   </h3>
                   <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--muted-foreground)]">
                     The end result should never feel like an agency template or a
@@ -271,7 +271,7 @@ export default async function Home() {
                 <SectionHeader
                   eyebrow="How It Connects"
                   title="The service lines are designed to strengthen each other"
-                  description="Patricians is structured so each offering can work independently or fit into a more connected digital growth system. A premium website can pair with a chatbot. Marketing can support the launch. Mobile can extend the product experience."
+                  description="Patricians is structured so each offering can work independently or fit into a more connected digital growth system. A premium website can pair with a chatbot. Social media marketing can support the launch. Mobile can extend the product experience."
                 />
                 <div className="rounded-[1.8rem] border border-[var(--border)] bg-[linear-gradient(180deg,#0f2d72_0%,#115ed4_48%,#6aa7ff_100%)] p-6 text-white shadow-[0_26px_90px_-46px_rgba(8,45,134,0.7)]">
                   <div className="flex items-center gap-3 text-sm font-medium text-white/80">
@@ -281,7 +281,7 @@ export default async function Home() {
                   <p className="mt-4 text-base leading-8 text-white/82">
                     The aim is not to stack services for the sake of it. The aim
                     is to give businesses cleaner digital execution across their
-                    website, customer experience, marketing, and product layer.
+                    website, customer experience, social media, and product layer.
                   </p>
                 </div>
               </div>
@@ -302,7 +302,7 @@ export default async function Home() {
                   },
                   {
                     title: "Growth and Product Momentum",
-                    text: "Marketing and mobile product work help the business extend visibility, engagement, and usable reach.",
+                    text: "Social media and mobile product work help the business extend visibility, engagement, and usable reach.",
                     icon: "rocket",
                   },
                 ].map((item) => {
@@ -398,7 +398,7 @@ export default async function Home() {
 
       <CTASection
         title="Build a sharper digital operating layer for your business"
-        description="Whether you need a premium website, a chatbot, a smarter marketing system, or a mobile MVP, Patricians helps you move with more intelligence and better execution."
+        description="Whether you need a premium website, a chatbot, a smarter social media system, or a mobile MVP, Patricians helps you move with more intelligence and better execution."
         secondaryLabel="Explore Services"
         secondaryHref="/services"
       />

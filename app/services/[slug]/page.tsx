@@ -21,7 +21,7 @@ const accentMap = {
     "bg-[linear-gradient(135deg,#09306f_0%,#1d66f5_44%,#83b8ff_100%)]",
   "websites-in-3-days":
     "bg-[linear-gradient(135deg,#123160_0%,#0d4acb_48%,#8fc1ff_100%)]",
-  "ai-digital-marketing":
+  "ai-social-media-marketing":
     "bg-[linear-gradient(135deg,#153056_0%,#1760d7_48%,#7eb3ff_100%)]",
   "mobile-app-development":
     "bg-[linear-gradient(135deg,#102e68_0%,#115ed4_44%,#93c3ff_100%)]",
@@ -115,7 +115,7 @@ export default async function ServicePage({
         <ChatbotPlans eyebrow="Website Chatbot Plans" className="border-t-0" />
       ) : null}
 
-      {service.slug === "ai-digital-marketing" ? <MarketingPlans /> : null}
+      {service.slug === "ai-social-media-marketing" ? <MarketingPlans /> : null}
 
       <section className="relative overflow-hidden py-20 sm:py-24">
         <div
