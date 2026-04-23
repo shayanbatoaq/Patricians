@@ -10,6 +10,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { Logo } from "@/components/brand/logo";
 import { getSiteIcon } from "@/components/icons/site-icon";
+import { PatAIButton } from "@/components/pat-ai/PatAIButton";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { navLinks, services } from "@/data/site";
@@ -197,6 +198,7 @@ export function Navbar() {
             </nav>
 
             <div className="hidden items-center gap-3 lg:flex">
+              <PatAIButton onClick={closeMenus} />
               <Button href="/contact">Book a Strategy Call</Button>
             </div>
 
@@ -323,6 +325,8 @@ export function Navbar() {
                       {link.label}
                     </Link>
                   ))}
+
+                  <PatAIButton onClick={closeMenus} className="mt-2 w-full" />
 
                   <Button href="/contact" className="mt-3 w-full">
                     Book a Strategy Call

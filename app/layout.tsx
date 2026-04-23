@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { JsonLd } from "@/components/seo/json-ld";
+import { PatAIWidget } from "@/components/pat-ai/PatAIWidget";
 import { Footer } from "@/components/site/footer";
 import { Navbar } from "@/components/site/navbar";
 import {
@@ -73,6 +74,7 @@ export default function RootLayout({
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
+          <PatAIWidget />
         </div>
       </body>
     </html>
