@@ -104,24 +104,24 @@ export const services = [
   {
     slug: "ai-chatbots",
     icon: "message",
-    label: "AI Chatbots for Websites",
-    title: "AI Chatbots for Websites",
-    seoTitle: "AI Chatbots for Websites | Patricians",
+    label: "AI Website Assistants",
+    title: "AI Website Assistants",
+    seoTitle: "AI Website Assistants | Patricians",
     seoDescription:
-      "Patricians builds branded AI chatbots for websites that answer questions, capture leads, qualify prospects, and improve customer experience.",
+      "Patricians builds branded AI website assistants that answer questions, capture leads, qualify prospects, and improve customer experience.",
     eyebrow: "Always-On Customer Experience",
     shortDescription:
-      "Premium website chatbots designed for 24/7 support, lead capture, qualification, FAQs, and conversion support.",
+      "Premium website assistants designed for 24/7 support, lead capture, qualification, FAQs, and conversion support.",
     description:
       "We build branded AI chat experiences that answer questions, qualify visitors, and support sales or service workflows directly on your website.",
     focus: [
       "24/7 customer assistance",
       "Lead capture and qualification",
-      "Website-integrated recurring chatbot systems",
+      "Website-integrated recurring assistant systems",
     ],
-    introTitle: "A website chatbot that feels useful, not ornamental",
+    introTitle: "A website assistant that feels useful, not ornamental",
     introText:
-      "A high-quality chatbot should do more than sit in the corner of the screen. Patricians designs AI chat experiences that support visitors, reduce repetitive questions, and move serious inquiries toward the right next step.",
+      "A high-quality website assistant should do more than sit in the corner of the screen. Patricians designs AI chat experiences that support visitors, reduce repetitive questions, and move serious inquiries toward the right next step.",
     benefits: [
       {
         title: "Round-the-clock support",
@@ -147,7 +147,7 @@ export const services = [
         step: "01",
         title: "Use-case definition",
         description:
-          "We identify the support, sales, FAQ, and qualification flows the chatbot needs to handle.",
+          "We identify the support, sales, FAQ, and qualification flows the website assistant needs to handle.",
       },
       {
         step: "02",
@@ -159,7 +159,7 @@ export const services = [
         step: "03",
         title: "Integration and training",
         description:
-          "We connect the chatbot to your website and shape the knowledge it should rely on.",
+          "We connect the website assistant to your website and shape the knowledge it should rely on.",
       },
       {
         step: "04",
@@ -169,25 +169,25 @@ export const services = [
       },
     ],
     deliverables: [
-      "Branded chatbot setup for your website",
+      "Branded website assistant setup for your website",
       "Lead capture and qualification flows",
       "FAQ and support response design",
       "Escalation pathways for high-intent inquiries",
       "Support and optimization path matched to the selected plan",
     ],
     whyPatricians: [
-      "We treat chatbot design as part of the customer experience, not an add-on.",
+      "We treat website assistant design as part of the customer experience, not an add-on.",
       "We build for clarity, conversion, and trust instead of novelty.",
       "We structure each plan so support, automation, and optimization match the business need.",
     ],
     heroHighlights: [
       "24/7 assistance with premium brand presentation",
       "Lead capture, qualification, and conversion support on-site",
-      "No setup fee with a 3-month upfront commitment",
+      "No setup fee with a 3-month commitment required",
     ],
     ctaTitle: "Turn your website into a smarter front door",
     ctaText:
-      "We can build a chatbot that supports visitors, captures better leads, and fits your brand.",
+      "We can build a website assistant that supports visitors, captures better leads, and fits your brand.",
   },
   {
     slug: "websites-in-3-days",
@@ -494,7 +494,7 @@ export const homeProcess = [
     step: "02",
     title: "System Design",
     description:
-      "We shape the website, chatbot, social media marketing, or app approach around outcomes.",
+      "We shape the website, website assistant, social media marketing, or app approach around outcomes.",
   },
   {
     step: "03",
@@ -532,12 +532,12 @@ export const contactFaq = [
   {
     question: "Can we start with one focused service?",
     answer:
-      "Yes. Many engagements begin with a single website, chatbot, social media marketing plan, or mobile product and expand from there.",
+      "Yes. Many engagements begin with a single website, website assistant, social media marketing plan, or mobile product and expand from there.",
   },
   {
     question: "Do you support ongoing work?",
     answer:
-      "Yes. Chatbots, social media systems, and product improvements often benefit from an ongoing optimization model.",
+      "Yes. Website assistants, social media systems, and product improvements often benefit from an ongoing optimization model.",
   },
   {
     question: "Is Patricians only for large companies?",
@@ -547,7 +547,7 @@ export const contactFaq = [
 ] as const;
 
 export const contactServiceOptions = [
-  "AI Chatbots",
+  "AI Website Assistants",
   "High-End Websites Within Days",
   "AI Social Media Marketing",
   "Mobile App Development",
@@ -666,8 +666,8 @@ export const socialMediaMarketingPlans: ReadonlyArray<MarketingPlan> = [
 export const chatbotPlans: ReadonlyArray<ChatbotPlan> = [
   {
     name: "Starter",
-    price: "$100 / month",
-    commitment: "$300 upfront for a 3-month commitment",
+    price: "$99 / month",
+    commitment: "3-month commitment required",
     role: "24/7 AI receptionist",
     bestFor:
       "Small and local businesses that need instant replies and a simple way to capture inquiries.",
@@ -681,7 +681,7 @@ export const chatbotPlans: ReadonlyArray<ChatbotPlan> = [
     overage: "$10 per extra 1,000",
     support: "Standard support, 24-48h response",
     includes: [
-      "Website chatbot on one site with basic UI customization",
+      "Website assistant on one site with basic UI customization",
       "Training on up to 10 website pages and FAQ content",
       "Lead capture for name and phone or email",
       "Answers FAQs and common customer questions",
@@ -695,8 +695,8 @@ export const chatbotPlans: ReadonlyArray<ChatbotPlan> = [
   },
   {
     name: "Growth",
-    price: "$200 / month",
-    commitment: "$600 upfront for a 3-month commitment",
+    price: "$199 / month",
+    commitment: "3-month commitment required",
     role: "AI lead generator + assistant",
     bestFor:
       "Service businesses, e-commerce brands, and teams that want better leads instead of more loose inquiries.",
@@ -727,11 +727,11 @@ export const chatbotPlans: ReadonlyArray<ChatbotPlan> = [
   },
   {
     name: "Pro",
-    price: "$500 / month",
-    commitment: "$1,500 upfront for a 3-month commitment",
+    price: "$499 / month",
+    commitment: "3-month commitment required",
     role: "AI sales system",
     bestFor:
-      "High-ticket businesses, agencies, and revenue-driven teams that want the chatbot to actively support conversion.",
+      "High-ticket businesses, agencies, and revenue-driven teams that want the website assistant to actively support conversion.",
     icon: "target",
     accentClassName: "from-rose-600 via-red-500 to-orange-300",
     accentSoftClassName:

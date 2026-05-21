@@ -112,7 +112,7 @@ export default async function ServicePage({
       ) : null}
 
       {service.slug === "ai-chatbots" ? (
-        <ChatbotPlans eyebrow="Website Chatbot Plans" className="border-t-0" />
+        <ChatbotPlans eyebrow="Website Assistant Plans" className="border-t-0" />
       ) : null}
 
       {service.slug === "ai-social-media-marketing" ? <MarketingPlans /> : null}

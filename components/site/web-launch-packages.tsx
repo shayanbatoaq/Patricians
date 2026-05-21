@@ -325,7 +325,7 @@ export function WebLaunchPackages({
                     AI Upgrade
                   </p>
                   <h3 className="mt-2 text-xl font-semibold tracking-[-0.03em] text-[var(--foreground)]">
-                    Want AI features? Add an AI chatbot or automation system.
+                    Want AI features? Add an AI website assistant or automation system.
                   </h3>
                   <p className="mt-2 text-sm leading-7 text-[var(--muted-foreground)]">
                     Turn a fast launch into a smarter front door with AI-supported

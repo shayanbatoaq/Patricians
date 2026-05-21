@@ -11,9 +11,9 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Pat AI | Patricians AI Assistant",
   description:
-    "Chat with Pat AI to explore Patricians services, website pricing, AI automation, chatbots, marketing, and strategy call options.",
+    "Chat with Pat AI to explore Patricians services, website pricing, AI automation, website assistants, marketing, and strategy call options.",
   path: "/pat-ai",
-  keywords: ["Pat AI", "Patricians chatbot", "Patricians AI assistant"],
+  keywords: ["Pat AI", "Patricians website assistant", "Patricians AI website assistant"],
 });
 
 const suggestedPrompts = [
@@ -21,7 +21,7 @@ const suggestedPrompts = [
   "How much is a website?",
   "Can you build an e-commerce website?",
   "How can automation help my team?",
-  "Which chatbot plan fits my website?",
+  "Which website assistant plan fits my website?",
 ] as const;
 
 export default function PatAIPage() {
@@ -43,7 +43,7 @@ export default function PatAIPage() {
               </h1>
               <p className="mt-3 max-w-sm text-sm leading-7 text-[var(--muted-foreground)]">
                 A pre-sales assistant for Patricians. Ask about services,
-                pricing, timelines, AI automation, chatbots, websites, marketing,
+                pricing, timelines, AI automation, website assistants, websites, marketing,
                 or mobile app development.
               </p>
             </div>
@@ -89,9 +89,10 @@ export default function PatAIPage() {
 
               <Link
                 href="/contact"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--brand-600)] px-5 py-3 text-sm font-semibold text-white shadow-[0_18px_44px_-24px_rgba(17,94,212,0.74)] transition-all duration-300 hover:bg-[var(--brand-700)]"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--brand-600)] px-5 py-3 text-sm font-semibold text-white shadow-[0_18px_44px_-24px_rgba(17,94,212,0.74)] transition-all duration-300 hover:bg-[var(--brand-700)] [&_*]:text-white"
+                style={{ color: "#ffffff" }}
               >
-                <Calendar className="h-4 w-4" />
+                <Calendar className="h-4 w-4 text-white" />
                 Book a Strategy Call
               </Link>
             </div>

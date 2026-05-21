@@ -16,7 +16,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Contact Patricians | AI Automation & Web Development Agency",
   description:
-    "Contact Patricians to discuss AI automation, premium web development, chatbot systems, social media marketing workflows, or mobile product development.",
+    "Contact Patricians to discuss AI automation, premium web development, website assistant systems, social media marketing workflows, or mobile product development.",
   path: "/contact",
   keywords: ["contact Patricians", "Patricians inquiry", "Patricians strategy call"],
 });
@@ -27,7 +27,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Contact Patricians and start the right conversation"
-        description="If you are planning a premium website, a chatbot, a smarter social media marketing workflow, or an AI-enhanced mobile product, Patricians can help shape the path forward."
+        description="If you are planning a premium website, a website assistant, a smarter social media marketing workflow, or an AI-enhanced mobile product, Patricians can help shape the path forward."
       >
         <div className="rounded-[1.8rem] border border-[var(--border)] bg-white p-6 shadow-[0_24px_70px_-42px_rgba(15,23,42,0.28)]">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--brand-700)]">

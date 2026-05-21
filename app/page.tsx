@@ -19,7 +19,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Patricians | AI Automation & Web Development Agency",
   description:
-    "Patricians is an AI automation and web development agency building premium websites, branded AI systems, chatbot workflows, and modern digital growth infrastructure.",
+    "Patricians is an AI automation and web development agency building premium websites, branded AI systems, website assistant workflows, and modern digital growth infrastructure.",
   path: "/",
   keywords: [
     "Patricians home",
@@ -31,8 +31,8 @@ export const metadata: Metadata = buildPageMetadata({
 
 const featurePills = [
   {
-    label: "AI Chatbots",
-    mobileLabel: "Chatbots",
+    label: "AI Website Assistants",
+    mobileLabel: "Website Assistants",
     href: "/services/ai-chatbots",
   },
   {
@@ -164,7 +164,7 @@ export default async function Home() {
               <SectionHeader
                 eyebrow="Positioning"
                 title="Patricians is evolving into a premium AI systems company"
-                description="We deliver premium websites, AI-supported social media marketing, website chatbots, and modern mobile products through a more intelligent, systems-led approach. The goal is sharper execution, clearer digital experiences, and better growth infrastructure."
+                description="We deliver premium websites, AI-supported social media marketing, website assistants, and modern mobile products through a more intelligent, systems-led approach. The goal is sharper execution, clearer digital experiences, and better growth infrastructure."
               />
             </Reveal>
 
@@ -178,7 +178,7 @@ export default async function Home() {
                     AI-powered customer experiences
                   </h3>
                   <p className="mt-3 text-sm leading-7 text-[var(--muted-foreground)]">
-                    Website chatbots, guided conversations, and intelligent
+                    Website assistants, guided conversations, and intelligent
                     touchpoints that help visitors move with more confidence.
                   </p>
                 </article>
@@ -271,7 +271,7 @@ export default async function Home() {
                 <SectionHeader
                   eyebrow="How It Connects"
                   title="The service lines are designed to strengthen each other"
-                  description="Patricians is structured so each offering can work independently or fit into a more connected digital growth system. A premium website can pair with a chatbot. Social media marketing can support the launch. Mobile can extend the product experience."
+                  description="Patricians is structured so each offering can work independently or fit into a more connected digital growth system. A premium website can pair with a website assistant. Social media marketing can support the launch. Mobile can extend the product experience."
                 />
                 <div className="rounded-[1.8rem] border border-[var(--border)] bg-[linear-gradient(180deg,#0f2d72_0%,#115ed4_48%,#6aa7ff_100%)] p-6 text-white shadow-[0_26px_90px_-46px_rgba(8,45,134,0.7)]">
                   <div className="flex items-center gap-3 text-sm font-medium text-white/80">
@@ -296,8 +296,8 @@ export default async function Home() {
                     icon: "screen",
                   },
                   {
-                    title: "Chatbot Layer",
-                    text: "AI chatbots improve engagement, answer questions, and support lead capture on-site.",
+                    title: "Website Assistant Layer",
+                    text: "AI website assistants improve engagement, answer questions, and support lead capture on-site.",
                     icon: "message",
                   },
                   {
@@ -398,7 +398,7 @@ export default async function Home() {
 
       <CTASection
         title="Build a sharper digital operating layer for your business"
-        description="Whether you need a premium website, a chatbot, a smarter social media system, or a mobile MVP, Patricians helps you move with more intelligence and better execution."
+        description="Whether you need a premium website, a website assistant, a smarter social media system, or a mobile MVP, Patricians helps you move with more intelligence and better execution."
         secondaryLabel="Explore Services"
         secondaryHref="/services"
       />

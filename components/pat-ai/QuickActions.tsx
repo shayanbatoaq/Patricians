@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 export const patAIQuickActions = [
   { label: "Explore Services", prompt: "Show me Patricians services.", icon: Sparkles },
   { label: "Website Pricing", prompt: "What are your website packages and pricing?", icon: Rocket },
-  { label: "AI Chatbots", prompt: "Tell me about AI chatbots for my website.", icon: MessagesSquare },
+  { label: "AI Website Assistants", prompt: "Tell me about AI website assistants for my website.", icon: MessagesSquare },
   { label: "AI Automation", prompt: "How can AI automation help my business?", icon: Bot },
   { label: "E-Commerce Website", prompt: "I need an e-commerce website. What do you recommend?", icon: ShoppingBag },
   { label: "Contact Patricians", prompt: "How can I contact Patricians or book a strategy call?", icon: Calendar },

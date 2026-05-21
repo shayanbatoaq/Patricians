@@ -41,7 +41,7 @@ type ChatbotPlansProps = {
 };
 
 export function ChatbotPlans({
-  eyebrow = "Chatbot Plans",
+  eyebrow = "Website Assistant Plans",
   className,
 }: ChatbotPlansProps) {
   return (
@@ -69,8 +69,8 @@ export function ChatbotPlans({
           <SectionHeader
             className="items-center text-center"
             eyebrow={eyebrow}
-            title="Website chatbot plans designed around replies, lead quality, and conversion support"
-            description="No setup fee. Every plan is billed monthly with a 3-month commitment paid upfront, so the chatbot has enough runway to launch properly and start performing."
+            title="Website assistant plans designed around replies, lead quality, and conversion support"
+            description="No setup fee. Every plan is billed monthly with a 3-month commitment required, so the website assistant has enough runway to launch properly and start performing."
             align="center"
           />
         </Reveal>
@@ -87,10 +87,10 @@ export function ChatbotPlans({
                     Pricing Model
                   </p>
                   <h3 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
-                    Clear monthly tiers, no setup fee, 3 months paid upfront
+                    Clear monthly tiers, no setup fee, 3-month commitment required
                   </h3>
                   <p className="mt-3 text-sm leading-7 text-[var(--muted-foreground)]">
-                    These plans stay focused on website chatbots only. The structure
+                    These plans stay focused on website assistants only. The structure
                     scales from a basic AI receptionist to a full AI sales system,
                     without drifting into unrelated channels or bloated retainers.
                   </p>
@@ -271,8 +271,7 @@ export function ChatbotPlans({
 
         <Reveal delay={0.3}>
           <p className="mt-6 text-center text-sm font-medium text-[var(--muted-foreground)]">
-            No setup fee. Website chatbot plans only. 3-month commitment required
-            with payment upfront.
+            No setup fee. Website assistant plans only. 3-month commitment required.
           </p>
         </Reveal>
 
@@ -286,15 +285,15 @@ export function ChatbotPlans({
                   </span>
                   <div>
                     <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white/72">
-                      Custom Chatbot Scope
+                      Custom Website Assistant Scope
                     </p>
                     <h3 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-white">
                       Need something more tailored than the standard plans?
                     </h3>
                     <p className="mt-3 text-sm leading-7 text-white/82">
-                      If your chatbot needs deeper workflow logic, multi-step sales
+                      If your website assistant needs deeper workflow logic, multi-step sales
                       funnels, or custom integrations, we can scope a more advanced
-                      website chatbot system with you directly.
+                      website assistant system with you directly.
                     </p>
                   </div>
                 </div>

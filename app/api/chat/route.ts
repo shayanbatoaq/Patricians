@@ -2,44 +2,150 @@ import { PAT_AI_CONTEXT } from "@/lib/pat-ai-context";
 import type { ChatApiRequest, ChatApiResponse } from "@/types/chat";
 
 const SYSTEM_PROMPT = `
-You are Pat AI, the AI assistant for Patricians.
+You are Pat AI, the official AI assistant for Patricians.
 
-ROLE:
-You help users understand services, pricing, and solutions.
+You are NOT a general-purpose chatbot.
 
-OBJECTIVES:
-- Recommend the best service
-- Help users decide what they need
-- Guide them toward conversion
+Your only job is to help users understand Patricians, its services, pricing, timelines, process, contact options, and AI solutions.
 
-RULES:
-- Keep responses short (3-6 lines)
-- Be clear, direct, and professional
-- Ask only ONE follow-up question
-- Always guide toward next step
+SOURCE OF TRUTH:
+Use only the provided Patricians context and website content.
+Do not invent facts.
+Do not guess pricing, timelines, features, guarantees, or technical details.
+If information is not present in the provided context, say that you do not have that information and recommend contacting Patricians.
 
-BEHAVIOR:
-- If user is unsure -> help them choose
-- If user shows intent -> suggest:
-  - Book a Strategy Call
-  - Contact Patricians
+ALLOWED TOPICS:
+- Patricians company information
+- AI automation services
+- AI website assistant services
+- website development services
+- e-commerce website services
+- digital marketing services
+- mobile app development services
+- pricing and packages
+- timelines
+- process
+- FAQs
+- contact and booking guidance
+- helping users choose the right Patricians service
 
-TONE:
-- Premium
-- Calm
-- Business-focused
-- Confident but not hype
+DISALLOWED TOPICS:
+- cooking or recipes
+- school/homework help
+- coding help unrelated to Patricians
+- general AI questions not connected to Patricians
+- medical, legal, financial, or religious advice
+- news, politics, entertainment, sports
+- personal advice
+- anything unrelated to Patricians
 
-DO NOT:
-- Write long paragraphs
-- Over-explain
-- Use technical jargon unnecessarily
+OUT-OF-SCOPE RESPONSE RULE:
+If the user asks about anything outside Patricians, respond briefly:
+"I can only help with Patricians' services, pricing, timelines, and AI solutions. If you need help choosing between websites, website assistants, automation, digital marketing, or mobile apps, I can guide you."
 
-ALWAYS:
-- Be practical
-- Be helpful
-- Move conversation forward
+HALLUCINATION RULES:
+- Never make up information
+- Never invent unavailable services
+- Never invent discounts
+- Never invent delivery promises
+- Never claim something is included unless it exists in the context
+- If unsure, admit uncertainty
+- If the context does not contain the answer, say:
+"I don't have that information in my current Patricians context. Please contact Patricians for confirmation."
+
+RESPONSE STYLE:
+- Keep answers concise
+- Use 3-6 lines where possible
+- Ask only one follow-up question at a time
+- Be professional, calm, clear, and business-focused
+- Guide users toward Book a Strategy Call or Contact Patricians when relevant
+
+PRIMARY OBJECTIVE:
+Help users understand Patricians and move toward the right next step.
 `;
+
+const OUT_OF_SCOPE_MESSAGE =
+  "I can only help with Patricians' services, pricing, timelines, and AI solutions. If you need help choosing between websites, website assistants, automation, digital marketing, or mobile apps, I can guide you.";
+
+const patriciansKeywords = [
+  "patricians",
+  "pat ai",
+  "service",
+  "services",
+  "pricing",
+  "price",
+  "cost",
+  "package",
+  "packages",
+  "plan",
+  "plans",
+  "timeline",
+  "delivery",
+  "contact",
+  "email",
+  "phone",
+  "book",
+  "strategy call",
+  "website",
+  "site",
+  "landing page",
+  "e-commerce",
+  "ecommerce",
+  "store",
+  "shop",
+  "automation",
+  "workflow",
+  "ai solution",
+  "website assistant",
+  "assistant",
+  "chatbot",
+  "chat bot",
+  "marketing",
+  "digital marketing",
+  "social media",
+  "meta",
+  "facebook",
+  "instagram",
+  "mobile",
+  "app",
+  "mvp",
+  "clinic",
+  "business",
+  "brand",
+  "leads",
+  "lead",
+  "sales",
+  "support",
+  "customer",
+  "customers",
+  "company",
+  "agency",
+  "faq",
+  "included",
+  "includes",
+  "best for",
+] as const;
+
+const outOfScopePatterns = [
+  /\b(bake|cake|recipe|cook|cooking|meal|eat|food|dinner|lunch|breakfast)\b/i,
+  /\b(homework|essay|assignment|school|solve this|math problem)\b/i,
+  /\b(code|coding|python|javascript|java|c\+\+|html|css|sql|debug|loop|function)\b/i,
+  /\b(president|prime minister|election|politics|news|match|score|sports|movie|song|celebrity)\b/i,
+  /\b(workout|fitness plan|diet plan|personal advice|relationship advice)\b/i,
+  /\b(quantum physics|physics|chemistry|biology|history|geography)\b/i,
+  /\b(medical|doctor|diagnose|medicine|legal|lawyer|lawsuit|financial advice|investment|religious)\b/i,
+] as const;
+
+const businessIntentPatterns = [
+  /\b(i|we|my|our)\s+(need|want|run|have|own|am launching|are launching)\b/i,
+  /\b(which|what)\s+(service|package|plan)\b/i,
+  /\b(what do you do|who are you|tell me about (patricians|your company|the company))\b/i,
+  /\b(help|guide|recommend|choose)\b/i,
+] as const;
+
+const generalRequestPatterns = [
+  /\b(tell me|explain|teach me|show me|give me|write|create|make|draft|summarize|translate|define|who is|what is|how do i|how to|why does|when did)\b/i,
+] as const;
 
 function normalizeMessages(messages: ChatApiRequest["messages"]) {
   return messages
@@ -55,6 +161,54 @@ function normalizeMessages(messages: ChatApiRequest["messages"]) {
       role: message.role,
       content: message.content.trim().slice(0, 2000),
     }));
+}
+
+function includesAnyKeyword(text: string, keywords: readonly string[]) {
+  const lowerText = text.toLowerCase();
+
+  return keywords.some((keyword) => lowerText.includes(keyword));
+}
+
+function isPatriciansRelated(message: string) {
+  return (
+    includesAnyKeyword(message, patriciansKeywords) ||
+    businessIntentPatterns.some((pattern) => pattern.test(message))
+  );
+}
+
+function isClearlyOutOfScope(message: string) {
+  if (isPatriciansRelated(message)) {
+    return false;
+  }
+
+  return (
+    outOfScopePatterns.some((pattern) => pattern.test(message)) ||
+    generalRequestPatterns.some((pattern) => pattern.test(message))
+  );
+}
+
+function getOutOfScopeResponse(): ChatApiResponse {
+  return {
+    message: OUT_OF_SCOPE_MESSAGE,
+    suggestedActions: ["Explore Services", "Contact Patricians"],
+  };
+}
+
+function sanitizeAssistantResponse(response: string, latestUserMessage: string) {
+  if (isClearlyOutOfScope(latestUserMessage)) {
+    return OUT_OF_SCOPE_MESSAGE;
+  }
+
+  const looksLikeGeneralAnswer =
+    /```|^\s*(ingredients|steps|method|recipe|workout|exercise|diagnosis|legal advice|financial advice)\b/im.test(
+      response,
+    );
+
+  if (looksLikeGeneralAnswer && !isPatriciansRelated(response)) {
+    return OUT_OF_SCOPE_MESSAGE;
+  }
+
+  return response;
 }
 
 function getSuggestedActions(text: string, latestUserMessage: string) {
@@ -80,8 +234,12 @@ function getSuggestedActions(text: string, latestUserMessage: string) {
     actions.add("Contact Patricians");
   }
 
-  if (lowerText.includes("chatbot") || lowerText.includes("chat bot")) {
-    actions.add("View Chatbot Plans");
+  if (
+    lowerText.includes("website assistant") ||
+    lowerText.includes("chatbot") ||
+    lowerText.includes("chat bot")
+  ) {
+    actions.add("View Website Assistant Plans");
     actions.add("Book a Strategy Call");
   }
 
@@ -128,18 +286,6 @@ function getSuggestedActions(text: string, latestUserMessage: string) {
 
 export async function POST(request: Request) {
   try {
-    if (!process.env.OPENROUTER_API_KEY) {
-      return Response.json(
-        {
-          message:
-            "Pat AI is almost ready, but the OpenRouter API key is not configured yet.",
-          suggestedActions: ["Contact Patricians"],
-          error: "OPENROUTER_API_KEY is missing.",
-        },
-        { status: 500 },
-      );
-    }
-
     const body = (await request.json()) as Partial<ChatApiRequest>;
     const messages = normalizeMessages(body.messages ?? []);
 
@@ -156,6 +302,22 @@ export async function POST(request: Request) {
 
     const latestUserMessage = messages[messages.length - 1]?.content ?? "";
 
+    if (isClearlyOutOfScope(latestUserMessage)) {
+      return Response.json(getOutOfScopeResponse());
+    }
+
+    if (!process.env.OPENROUTER_API_KEY) {
+      return Response.json(
+        {
+          message:
+            "Pat AI is almost ready, but the OpenRouter API key is not configured yet.",
+          suggestedActions: ["Contact Patricians"],
+          error: "OPENROUTER_API_KEY is missing.",
+        },
+        { status: 500 },
+      );
+    }
+
     const openRouterResponse = await fetch(
       "https://openrouter.ai/api/v1/chat/completions",
       {
@@ -168,10 +330,13 @@ export async function POST(request: Request) {
         model: "openai/gpt-5.4-mini",
         messages: [
           { role: "system", content: SYSTEM_PROMPT },
-          { role: "system", content: JSON.stringify(PAT_AI_CONTEXT) },
+          {
+            role: "system",
+            content: "Patricians context: " + JSON.stringify(PAT_AI_CONTEXT),
+          },
           ...messages,
         ],
-        temperature: 0.5,
+        temperature: 0.2,
         max_tokens: 380,
       }),
       },
@@ -194,9 +359,10 @@ export async function POST(request: Request) {
     const result = (await openRouterResponse.json()) as {
       choices?: Array<{ message?: { content?: string } }>;
     };
-    const message =
+    const rawMessage =
       result.choices?.[0]?.message?.content?.trim() ??
       "I can help with services, pricing, timelines, and the right next step.";
+    const message = sanitizeAssistantResponse(rawMessage, latestUserMessage);
 
     const response: ChatApiResponse = {
       message,

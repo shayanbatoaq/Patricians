@@ -15,7 +15,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Patricians Services | AI Automation, Web Development, Social Media, and Mobile",
   description:
-    "Explore Patricians services across AI chatbots for websites, high-end web development, AI social media marketing systems, and AI-enhanced mobile app development.",
+    "Explore Patricians services across AI website assistants, high-end web development, AI social media marketing systems, and AI-enhanced mobile app development.",
   path: "/services",
   keywords: ["Patricians services", "Patricians web development", "Patricians AI automation"],
 });
@@ -39,7 +39,7 @@ export default function ServicesPage() {
             {
               icon: Sparkles,
               title: "Premium digital execution",
-              text: "High-end websites, chatbots, and growth systems with modern polish.",
+              text: "High-end websites, website assistants, and growth systems with modern polish.",
             },
             {
               icon: BriefcaseBusiness,
@@ -91,7 +91,7 @@ export default function ServicesPage() {
             <SectionHeader
               eyebrow="Overview"
               title="A focused stack of services around systems, growth, and digital products"
-              description="Each service can stand alone, but they are designed to work together. A website can lead into a chatbot. Social media marketing can support launch and growth. Mobile can extend the product experience. The goal is connected value, not isolated deliverables."
+              description="Each service can stand alone, but they are designed to work together. A website can lead into a website assistant. Social media marketing can support launch and growth. Mobile can extend the product experience. The goal is connected value, not isolated deliverables."
             />
           </Reveal>
 

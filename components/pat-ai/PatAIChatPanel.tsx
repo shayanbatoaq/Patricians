@@ -25,7 +25,7 @@ const fallbackMessage =
 
 const suggestedActionPrompts: Record<string, string> = {
   "View Website Package": "Show me the website packages and help me choose one.",
-  "View Chatbot Plans": "Show me the chatbot plans and recommend the right one.",
+  "View Website Assistant Plans": "Show me the website assistant plans and recommend the right one.",
   "View Marketing Plans": "Show me the Meta marketing plans and recommend one.",
   "Discuss Automation": "I want to discuss AI automation for my business.",
   "Discuss Mobile App": "I want to discuss an AI-enhanced mobile app MVP.",
