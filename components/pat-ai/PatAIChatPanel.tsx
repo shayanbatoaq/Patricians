@@ -18,6 +18,7 @@ type PatAIChatPanelProps = {
   mode?: "widget" | "page";
   onClose?: () => void;
   className?: string;
+  draftPrompt?: { value: string; id: number } | null;
 };
 
 const fallbackMessage =
@@ -46,6 +47,7 @@ export function PatAIChatPanel({
   mode = "widget",
   onClose,
   className,
+  draftPrompt,
 }: PatAIChatPanelProps) {
   const router = useRouter();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -55,6 +57,7 @@ export function PatAIChatPanel({
     Array<{ label: string; prompt?: string }>
   >([]);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  const inputRef = useRef<HTMLTextAreaElement | null>(null);
   const isPage = mode === "page";
 
   const visibleActions = useMemo(() => {
@@ -68,6 +71,15 @@ export function PatAIChatPanel({
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
   }, [messages, isSending]);
+
+  useEffect(() => {
+    if (!draftPrompt) {
+      return;
+    }
+
+    setInput(draftPrompt.value);
+    inputRef.current?.focus();
+  }, [draftPrompt]);
 
   async function sendMessage(content: string) {
     const trimmedContent = content.trim();
@@ -273,6 +285,7 @@ export function PatAIChatPanel({
       >
         <div className="flex items-end gap-2 rounded-[1.35rem] border border-[var(--border)] bg-[var(--surface-alt)] p-2 transition-colors duration-200 focus-within:border-[var(--brand-300)]">
           <textarea
+            ref={inputRef}
             value={input}
             onChange={(event) => setInput(event.target.value)}
             onKeyDown={(event) => {
