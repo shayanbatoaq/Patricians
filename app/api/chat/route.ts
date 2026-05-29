@@ -59,6 +59,10 @@ RESPONSE STYLE:
 - Ask only one follow-up question at a time
 - Be professional, calm, clear, and business-focused
 - Guide users toward Book a Strategy Call or Contact Patricians when relevant
+- Use plain text only
+- Do not use markdown formatting
+- Do not use headings, bullets, numbered lists, tables, code blocks, links, emphasis, bold, italics, asterisks, underscores, or markdown syntax
+- Use clean sentences, short paragraphs, and line breaks only
 
 PRIMARY OBJECTIVE:
 Help users understand Patricians and move toward the right next step.
@@ -194,6 +198,24 @@ function getOutOfScopeResponse(): ChatApiResponse {
   };
 }
 
+function removeMarkdownFormatting(response: string) {
+  return response
+    .replace(/```[\s\S]*?```/g, (match) =>
+      match.replace(/```[a-z]*\n?/gi, "").replace(/```/g, ""),
+    )
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/^\s{0,3}#{1,6}\s+/gm, "")
+    .replace(/^\s{0,3}>\s?/gm, "")
+    .replace(/^\s*[-*+]\s+/gm, "")
+    .replace(/^\s*\d+[.)]\s+/gm, "")
+    .replace(/(\*\*|__)(.*?)\1/g, "$2")
+    .replace(/(\*|_)(.*?)\1/g, "$2")
+    .replace(/[*_]/g, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
 function sanitizeAssistantResponse(response: string, latestUserMessage: string) {
   if (isClearlyOutOfScope(latestUserMessage)) {
     return OUT_OF_SCOPE_MESSAGE;
@@ -208,7 +230,7 @@ function sanitizeAssistantResponse(response: string, latestUserMessage: string) 
     return OUT_OF_SCOPE_MESSAGE;
   }
 
-  return response;
+  return removeMarkdownFormatting(response);
 }
 
 function getSuggestedActions(text: string, latestUserMessage: string) {
