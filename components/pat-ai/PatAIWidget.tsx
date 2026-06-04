@@ -11,7 +11,7 @@ import { PatAIChatPanel } from "@/components/pat-ai/PatAIChatPanel";
 
 export function PatAIWidget() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   useEffect(() => {
     const openPatAI = () => setOpen(true);

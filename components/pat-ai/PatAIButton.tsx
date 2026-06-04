@@ -1,9 +1,6 @@
 "use client";
 
-import type { MouseEvent } from "react";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 import { Bot } from "lucide-react";
 
@@ -13,21 +10,10 @@ type PatAIButtonProps = {
 };
 
 export function PatAIButton({ onClick, className }: PatAIButtonProps) {
-  const pathname = usePathname();
-
-  function handleClick(event: MouseEvent<HTMLAnchorElement>) {
-    onClick?.();
-
-    if (pathname === "/") {
-      event.preventDefault();
-      window.dispatchEvent(new Event("pat-ai:open"));
-    }
-  }
-
   return (
     <Link
       href="/pat-ai"
-      onClick={handleClick}
+      onClick={onClick}
       className={className}
       aria-label="Open Pat AI"
     >
