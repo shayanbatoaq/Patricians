@@ -531,7 +531,7 @@ export function ConnectedNetworkBackground() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-[1] h-[100dvh] w-screen"
+      className="pointer-events-none fixed inset-0 z-[1] hidden h-[100dvh] w-screen sm:block"
     />
   );
 }

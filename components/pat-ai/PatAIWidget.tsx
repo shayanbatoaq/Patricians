@@ -11,14 +11,26 @@ import { PatAIChatPanel } from "@/components/pat-ai/PatAIChatPanel";
 
 export function PatAIWidget() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
+    const desktopQuery = window.matchMedia("(min-width: 640px)");
+    const initialViewportFrame = window.requestAnimationFrame(() => {
+      setOpen(desktopQuery.matches);
+    });
     const openPatAI = () => setOpen(true);
+    const syncWithViewport = (event: MediaQueryListEvent) => {
+      setOpen(event.matches);
+    };
 
     window.addEventListener("pat-ai:open", openPatAI);
+    desktopQuery.addEventListener("change", syncWithViewport);
 
-    return () => window.removeEventListener("pat-ai:open", openPatAI);
+    return () => {
+      window.cancelAnimationFrame(initialViewportFrame);
+      window.removeEventListener("pat-ai:open", openPatAI);
+      desktopQuery.removeEventListener("change", syncWithViewport);
+    };
   }, []);
 
   if (pathname === "/pat-ai") {
