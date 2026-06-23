@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { ConnectedNetworkBackground } from "@/components/background/ConnectedNetworkBackground";
 import { JsonLd } from "@/components/seo/json-ld";
 import { PatAIWidget } from "@/components/pat-ai/PatAIWidget";
 import { Footer } from "@/components/site/footer";
@@ -70,6 +71,7 @@ export default function RootLayout({
       <body className="min-h-full overflow-x-hidden bg-background text-foreground">
         <JsonLd data={getOrganizationSchema()} />
         <JsonLd data={getWebsiteSchema()} />
+        <ConnectedNetworkBackground />
         <div className="relative flex min-h-screen flex-col overflow-x-hidden">
           <Navbar />
           <main className="flex-1">{children}</main>
