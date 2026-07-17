@@ -232,10 +232,10 @@ export default function AboutPage() {
                       href="https://shayan.patricians.pk"
                       target="_blank"
                       rel="noreferrer"
-                      className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[var(--brand-700)] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_34px_-18px_rgba(13,74,203,0.72)] transition duration-200 hover:-translate-y-0.5 hover:bg-[var(--brand-900)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-500)]"
+                      className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[var(--brand-700)] px-6 py-3 text-sm font-semibold !text-white shadow-[0_16px_34px_-18px_rgba(13,74,203,0.72)] transition duration-200 hover:-translate-y-0.5 hover:bg-[var(--brand-900)] hover:!text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-500)]"
                     >
                       Visit Shayan&apos;s portfolio
-                      <ArrowUpRight aria-hidden className="h-4 w-4" />
+                      <ArrowUpRight aria-hidden className="h-4 w-4 text-white" />
                     </a>
                   </div>
                 </div>
