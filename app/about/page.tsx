@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
-import { Bot, Layers3, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Bot, Layers3, ShieldCheck } from "lucide-react";
 
 import { CTASection } from "@/components/ui/cta-section";
 import { Container } from "@/components/ui/container";
@@ -9,6 +10,8 @@ import { Reveal } from "@/components/ui/reveal";
 import { SectionHeader } from "@/components/ui/section-header";
 import { aboutPrinciples } from "@/data/site";
 import { buildPageMetadata } from "@/lib/seo";
+
+import shayanPortrait from "./shayan.jpg";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "About Patricians | AI Automation & Web Development Agency",
@@ -152,6 +155,93 @@ export default function AboutPage() {
               );
             })}
           </div>
+        </Container>
+      </section>
+
+      <section
+        aria-labelledby="co-founder-heading"
+        className="relative overflow-hidden border-b border-[var(--border)] py-20 sm:py-24"
+      >
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,#f7faff_0%,#ffffff_48%,#edf4ff_100%)]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -right-28 top-1/2 h-[30rem] w-[30rem] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(60,141,255,0.16),transparent_68%)] blur-3xl"
+        />
+        <Container className="relative">
+          <Reveal>
+            <div className="overflow-hidden rounded-[2rem] border border-[var(--border)] bg-white shadow-[0_30px_100px_-54px_rgba(15,45,114,0.42)]">
+              <div className="grid lg:grid-cols-[0.88fr_1.12fr]">
+                <div className="relative min-h-[26rem] overflow-hidden sm:min-h-[34rem] lg:min-h-[39rem]">
+                  <Image
+                    src={shayanPortrait}
+                    alt="Shayan, Co-Founder and Head of Development at Patricians"
+                    fill
+                    placeholder="blur"
+                    sizes="(min-width: 1024px) 42vw, 100vw"
+                    className="object-cover object-center"
+                  />
+                  <div
+                    aria-hidden
+                    className="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(180deg,transparent,rgba(8,45,134,0.42))]"
+                  />
+                  <div className="absolute bottom-5 left-5 rounded-full border border-white/30 bg-white/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--brand-900)] shadow-lg backdrop-blur sm:bottom-7 sm:left-7">
+                    Co-Founder &amp; Head of Development
+                  </div>
+                </div>
+
+                <div className="flex items-center p-7 sm:p-10 lg:p-14">
+                  <div className="max-w-2xl">
+                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--brand-700)]">
+                      Leadership
+                    </p>
+                    <h2
+                      id="co-founder-heading"
+                      className="mt-4 text-balance text-3xl font-semibold tracking-[-0.05em] text-[var(--foreground)] sm:text-4xl lg:text-5xl"
+                    >
+                      Meet the builder behind Patricians
+                    </h2>
+
+                    <div className="mt-7 border-l-2 border-[var(--brand-300)] pl-5">
+                      <p className="text-2xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
+                        Shayan
+                      </p>
+                      <p className="mt-1 text-sm font-medium text-[var(--brand-700)]">
+                        Co-Founder &amp; Head of Development
+                      </p>
+                    </div>
+
+                    <div className="mt-7 space-y-4 text-base leading-8 text-[var(--muted-foreground)]">
+                      <p>
+                        Shayan co-founded Patricians and leads the development
+                        of its websites, digital products, and intelligent
+                        systems. He brings the technical side of the company
+                        together, from shaping the architecture to refining the
+                        details people interact with.
+                      </p>
+                      <p>
+                        His approach is simple: understand the business problem,
+                        build with intention, and deliver work that feels as
+                        polished as it is dependable.
+                      </p>
+                    </div>
+
+                    <a
+                      href="https://shayan.patricians.pk"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[var(--brand-700)] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_34px_-18px_rgba(13,74,203,0.72)] transition duration-200 hover:-translate-y-0.5 hover:bg-[var(--brand-900)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-500)]"
+                    >
+                      Visit Shayan&apos;s portfolio
+                      <ArrowUpRight aria-hidden className="h-4 w-4" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </Container>
       </section>
 
