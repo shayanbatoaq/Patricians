@@ -39,6 +39,13 @@ export function Footer() {
               >
                 service lineup
               </Link>
+              , browse selected{" "}
+              <Link
+                href="/clientele"
+                className="font-medium text-[var(--brand-700)] underline-offset-4 transition-colors duration-200 hover:text-[var(--brand-600)] hover:underline"
+              >
+                client work
+              </Link>
               , or{" "}
               <Link
                 href="/contact"

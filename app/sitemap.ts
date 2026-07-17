@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 
+import { clientele } from "@/data/clientele";
 import { services } from "@/data/site";
 import { getCanonicalUrl, siteUrl } from "@/lib/seo";
 
@@ -25,6 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: getCanonicalUrl("/clientele"),
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: getCanonicalUrl("/contact"),
       lastModified,
       changeFrequency: "monthly",
@@ -39,5 +46,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  return [...staticRoutes, ...serviceRoutes];
+  const clienteleRoutes: MetadataRoute.Sitemap = clientele.map((client) => ({
+    url: getCanonicalUrl(`/clientele/${client.slug}`),
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
+  return [...staticRoutes, ...serviceRoutes, ...clienteleRoutes];
 }
