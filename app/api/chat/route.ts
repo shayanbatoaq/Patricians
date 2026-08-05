@@ -1,4 +1,7 @@
 import { PAT_AI_CONTEXT } from "@/lib/pat-ai-context";
+import { createLoggingToken } from "@/lib/loggingToken";
+import { PAT_AI_MODEL } from "@/lib/conversationAnalysis";
+import { EMPTY_USAGE_METRICS, readOpenRouterMetrics } from "@/lib/openrouterMetrics";
 import type { ChatApiRequest, ChatApiResponse } from "@/types/chat";
 
 const SYSTEM_PROMPT = `
@@ -162,8 +165,11 @@ function normalizeMessages(messages: ChatApiRequest["messages"]) {
     })
     .slice(-12)
     .map((message) => ({
+      id: typeof message.id === "string" ? message.id : crypto.randomUUID(),
       role: message.role,
       content: message.content.trim().slice(0, 2000),
+      createdAt:
+        typeof message.createdAt === "string" ? message.createdAt : new Date().toISOString(),
     }));
 }
 
@@ -310,22 +316,42 @@ export async function POST(request: Request) {
   try {
     const body = (await request.json()) as Partial<ChatApiRequest>;
     const messages = normalizeMessages(body.messages ?? []);
+    const sessionId = typeof body.sessionId === "string" ? body.sessionId : "";
+    const exchangeId = typeof body.exchangeId === "string" ? body.exchangeId : "";
 
-    if (messages.length === 0 || messages[messages.length - 1]?.role !== "user") {
+    if (
+      !sessionId ||
+      !exchangeId ||
+      messages.length === 0 ||
+      messages[messages.length - 1]?.role !== "user"
+    ) {
       return Response.json(
         {
           message: "Please send a question so Pat AI can help.",
           suggestedActions: ["Explore Services"],
-          error: "A user message is required.",
+          error: "A session, exchange, and user message are required.",
         },
         { status: 400 },
       );
     }
 
     const latestUserMessage = messages[messages.length - 1]?.content ?? "";
+    const latestUserMessageId = messages[messages.length - 1]?.id ?? crypto.randomUUID();
 
     if (isClearlyOutOfScope(latestUserMessage)) {
-      return Response.json(getOutOfScopeResponse());
+      const assistantMessageId = crypto.randomUUID();
+      return Response.json({
+        ...getOutOfScopeResponse(),
+        messageId: assistantMessageId,
+        model: PAT_AI_MODEL,
+        usage: { ...EMPTY_USAGE_METRICS },
+        loggingToken: createLoggingToken({
+          sessionId,
+          exchangeId,
+          userMessageId: latestUserMessageId,
+          assistantMessageId,
+        }),
+      });
     }
 
     if (!process.env.OPENROUTER_API_KEY) {
@@ -349,14 +375,14 @@ export async function POST(request: Request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "openai/gpt-5.4-mini",
+        model: PAT_AI_MODEL,
         messages: [
           { role: "system", content: SYSTEM_PROMPT },
           {
             role: "system",
             content: "Patricians context: " + JSON.stringify(PAT_AI_CONTEXT),
           },
-          ...messages,
+          ...messages.map(({ role, content }) => ({ role, content })),
         ],
         temperature: 0.2,
         max_tokens: 380,
@@ -380,14 +406,25 @@ export async function POST(request: Request) {
 
     const result = (await openRouterResponse.json()) as {
       choices?: Array<{ message?: { content?: string } }>;
+      usage?: Parameters<typeof readOpenRouterMetrics>[0];
     };
     const rawMessage =
       result.choices?.[0]?.message?.content?.trim() ??
       "I can help with services, pricing, timelines, and the right next step.";
     const message = sanitizeAssistantResponse(rawMessage, latestUserMessage);
 
+    const assistantMessageId = crypto.randomUUID();
     const response: ChatApiResponse = {
       message,
+      messageId: assistantMessageId,
+      model: PAT_AI_MODEL,
+      usage: readOpenRouterMetrics(result.usage),
+      loggingToken: createLoggingToken({
+        sessionId,
+        exchangeId,
+        userMessageId: latestUserMessageId,
+        assistantMessageId,
+      }),
       suggestedActions: getSuggestedActions(message, latestUserMessage),
     };
 

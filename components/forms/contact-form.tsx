@@ -4,6 +4,8 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { contactServiceOptions } from "@/data/site";
+import { finalizePatAISession } from "@/lib/patAILoggingClient";
+import { readPatAISession } from "@/lib/patAISession";
 
 const fieldClassName =
   "w-full rounded-3xl border border-[var(--border)] bg-white px-4 py-3.5 text-sm text-[var(--foreground)] outline-none transition-colors duration-200 placeholder:text-slate-400 focus:border-[var(--brand-300)] focus:ring-4 focus:ring-[rgba(17,94,212,0.08)]";
@@ -56,6 +58,18 @@ export function ContactForm() {
               result?.message ??
                 "Your inquiry has been sent successfully. Patricians will reply by email.",
             );
+
+            const patAISession = readPatAISession();
+            if (patAISession?.loggingToken) {
+              void finalizePatAISession(patAISession, "contact-submitted", {
+                userName: typeof payload.name === "string" ? payload.name : null,
+                email: typeof payload.email === "string" ? payload.email : null,
+                businessName:
+                  typeof payload.businessName === "string" ? payload.businessName : null,
+              }).catch((error) => {
+                console.error("Pat AI contact finalization failed", error);
+              });
+            }
           } catch {
             setStatus("error");
             setMessage(

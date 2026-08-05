@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -11,7 +11,21 @@ import { ArrowUpRight, Bot, ExternalLink, Send, X } from "lucide-react";
 import { MessageBubble } from "@/components/pat-ai/MessageBubble";
 import { QuickActions, patAIQuickActions } from "@/components/pat-ai/QuickActions";
 import { contactDetails } from "@/data/site";
+import { logPatAIExchange, finalizePatAISession } from "@/lib/patAILoggingClient";
+import {
+  createPatAISession,
+  isPatAISessionInactive,
+  PAT_AI_INACTIVITY_MS,
+  readPatAISession,
+  savePatAISession,
+  type PatAISession,
+} from "@/lib/patAISession";
+import { addUsageMetrics, EMPTY_USAGE_METRICS } from "@/lib/openrouterMetrics";
 import { cn } from "@/lib/utils";
+import type {
+  ConversationCompletionReason,
+  ConversationLogRequest,
+} from "@/types/analytics";
 import type { ChatApiResponse, ChatMessage } from "@/types/chat";
 
 type PatAIChatPanelProps = {
@@ -34,9 +48,13 @@ const suggestedActionPrompts: Record<string, string> = {
   "Contact Patricians": "How can I contact Patricians?",
 };
 
-function createMessage(role: ChatMessage["role"], content: string): ChatMessage {
+function createMessage(
+  role: ChatMessage["role"],
+  content: string,
+  id = crypto.randomUUID(),
+): ChatMessage {
   return {
-    id: `${role}-${Date.now()}-${Math.random().toString(36).slice(2)}`,
+    id,
     role,
     content,
     createdAt: new Date().toISOString(),
@@ -58,7 +76,53 @@ export function PatAIChatPanel({
   >([]);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
+  const sessionRef = useRef<PatAISession | null>(null);
+  const loggingQueueRef = useRef<Promise<void>>(Promise.resolve());
   const isPage = mode === "page";
+
+  const enqueueFinalization = useCallback(
+    (session: PatAISession, reason: ConversationCompletionReason) => {
+      loggingQueueRef.current = loggingQueueRef.current
+        .catch(() => undefined)
+        .then(async () => {
+          try {
+            const result = await finalizePatAISession(session, reason);
+            if (sessionRef.current?.sessionId === session.sessionId) {
+              const updated = {
+                ...sessionRef.current,
+                notionPageId: result?.notionPageId ?? sessionRef.current.notionPageId,
+                finalizedAt: new Date().toISOString(),
+              };
+              sessionRef.current = updated;
+              savePatAISession(updated);
+            }
+          } catch (error) {
+            console.error("Pat AI finalization failed", error);
+          }
+        });
+    },
+    [],
+  );
+
+  const enqueueExchangeLog = useCallback((payload: ConversationLogRequest) => {
+    loggingQueueRef.current = loggingQueueRef.current
+      .catch(() => undefined)
+      .then(async () => {
+        try {
+          const result = await logPatAIExchange(payload);
+          if (sessionRef.current?.sessionId === payload.sessionId) {
+            const updated = {
+              ...sessionRef.current,
+              notionPageId: result.notionPageId ?? sessionRef.current.notionPageId,
+            };
+            sessionRef.current = updated;
+            savePatAISession(updated);
+          }
+        } catch (error) {
+          console.error("Pat AI exchange logging failed", error);
+        }
+      });
+  }, []);
 
   const visibleActions = useMemo(() => {
     if (suggestedActions.length > 0) {
@@ -71,6 +135,48 @@ export function PatAIChatPanel({
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
   }, [messages, isSending]);
+
+  useEffect(() => {
+    const storedSession = readPatAISession();
+    let activeSession = storedSession ?? createPatAISession();
+
+    if (storedSession && isPatAISessionInactive(storedSession)) {
+      enqueueFinalization(storedSession, "inactivity");
+      activeSession = createPatAISession();
+    }
+
+    sessionRef.current = activeSession;
+    savePatAISession(activeSession);
+    setMessages(activeSession.messages);
+
+    const startNewConversation = () => {
+      const current = sessionRef.current;
+      if (current) enqueueFinalization(current, "new-conversation");
+      const next = createPatAISession();
+      sessionRef.current = next;
+      savePatAISession(next);
+      setMessages([]);
+      setSuggestedActions([]);
+    };
+
+    window.addEventListener("pat-ai:new-conversation", startNewConversation);
+    return () => {
+      window.removeEventListener("pat-ai:new-conversation", startNewConversation);
+    };
+  }, [enqueueFinalization]);
+
+  useEffect(() => {
+    const session = sessionRef.current;
+    if (!session || session.messages.length === 0 || !session.loggingToken) return;
+
+    const elapsed = Date.now() - Date.parse(session.lastActivityAt);
+    const remaining = Math.max(0, PAT_AI_INACTIVITY_MS - elapsed);
+    const timeout = window.setTimeout(() => {
+      enqueueFinalization(session, "inactivity");
+    }, remaining);
+
+    return () => window.clearTimeout(timeout);
+  }, [messages, enqueueFinalization]);
 
   useEffect(() => {
     if (!draftPrompt) {
@@ -88,7 +194,25 @@ export function PatAIChatPanel({
       return;
     }
 
-    const nextMessages = [...messages, createMessage("user", trimmedContent)];
+    let session = sessionRef.current ?? readPatAISession() ?? createPatAISession();
+    if (isPatAISessionInactive(session)) {
+      enqueueFinalization(session, "inactivity");
+      session = createPatAISession();
+      sessionRef.current = session;
+      savePatAISession(session);
+    }
+
+    const exchangeId = crypto.randomUUID();
+    const userMessage = createMessage("user", trimmedContent);
+    const nextMessages = [...session.messages, userMessage];
+    const pendingSession: PatAISession = {
+      ...session,
+      messages: nextMessages,
+      lastActivityAt: userMessage.createdAt,
+      finalizedAt: null,
+    };
+    sessionRef.current = pendingSession;
+    savePatAISession(pendingSession);
     setMessages(nextMessages);
     setInput("");
     setSuggestedActions([]);
@@ -99,19 +223,67 @@ export function PatAIChatPanel({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          sessionId: pendingSession.sessionId,
+          exchangeId,
           messages: nextMessages.map((message) => ({
+            id: message.id,
             role: message.role,
             content: message.content,
+            createdAt: message.createdAt,
           })),
         }),
       });
 
       const data = (await response.json()) as ChatApiResponse;
+      const assistantMessage = createMessage(
+        "assistant",
+        data.message || fallbackMessage,
+        data.messageId,
+      );
+      const completedMessages = [...nextMessages, assistantMessage];
+      const cumulativeUsage = addUsageMetrics(
+        pendingSession.usage,
+        data.usage ?? EMPTY_USAGE_METRICS,
+      );
+      const completedSession: PatAISession = {
+        ...pendingSession,
+        messages: completedMessages,
+        usage: cumulativeUsage,
+        model: data.model ?? pendingSession.model,
+        loggingToken: data.loggingToken ?? pendingSession.loggingToken,
+        lastActivityAt: assistantMessage.createdAt,
+      };
+      sessionRef.current = completedSession;
+      savePatAISession(completedSession);
+      setMessages(completedMessages);
 
-      setMessages((currentMessages) => [
-        ...currentMessages,
-        createMessage("assistant", data.message || fallbackMessage),
-      ]);
+      if (data.loggingToken) {
+        const strategyCallRequested =
+          /\b(?:book|schedule|arrange|request|want|need)\b.{0,30}\b(?:strategy\s+)?call\b/i.test(
+            trimmedContent,
+          );
+        enqueueExchangeLog({
+          loggingToken: data.loggingToken,
+          sessionId: completedSession.sessionId,
+          notionPageId: completedSession.notionPageId,
+          startedAt: completedSession.startedAt,
+          website: window.location.origin,
+          messages: completedMessages,
+          exchange: {
+            exchangeId,
+            userMessage,
+            assistantMessage,
+            usage: data.usage ?? { ...EMPTY_USAGE_METRICS },
+            model: data.model ?? completedSession.model,
+            completedAt: assistantMessage.createdAt,
+          },
+          cumulativeUsage,
+          finalize: strategyCallRequested,
+          completionReason: strategyCallRequested
+            ? "strategy-call-requested"
+            : undefined,
+        });
+      }
 
       if (data.suggestedActions?.length) {
         setSuggestedActions(
@@ -125,13 +297,19 @@ export function PatAIChatPanel({
         );
       }
     } catch {
-      setMessages((currentMessages) => [
-        ...currentMessages,
-        createMessage(
-          "assistant",
-          "I could not connect right now. You can still contact Patricians directly or book a strategy call.",
-        ),
-      ]);
+      const assistantMessage = createMessage(
+        "assistant",
+        "I could not connect right now. You can still contact Patricians directly or book a strategy call.",
+      );
+      const failedMessages = [...nextMessages, assistantMessage];
+      const failedSession: PatAISession = {
+        ...(sessionRef.current ?? pendingSession),
+        messages: failedMessages,
+        lastActivityAt: assistantMessage.createdAt,
+      };
+      sessionRef.current = failedSession;
+      savePatAISession(failedSession);
+      setMessages(failedMessages);
       setSuggestedActions([
         { label: "Book a Strategy Call", prompt: "I want to book a strategy call." },
         { label: "Contact Patricians", prompt: "How can I contact Patricians?" },
@@ -189,7 +367,12 @@ export function PatAIChatPanel({
             {onClose ? (
               <button
                 type="button"
-                onClick={onClose}
+                onClick={() => {
+                  if (sessionRef.current) {
+                    enqueueFinalization(sessionRef.current, "widget-closed");
+                  }
+                  onClose();
+                }}
                 className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border)] bg-white text-[var(--muted-foreground)] transition-all duration-200 hover:border-[var(--brand-300)] hover:text-[var(--foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-300)]"
                 aria-label="Close Pat AI"
               >
